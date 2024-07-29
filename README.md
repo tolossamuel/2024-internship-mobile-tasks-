@@ -38,4 +38,4 @@ This repository contains the task that aim to develope our mobile development sk
 
 ## Contact
 
-[Samuel Tolossa from G58 A2SV](samuel.tolossa@as2v.org)
+[Samuel Tolossa from G58 A2SV](/samuel.tolossa@as2v.org)
