@@ -8,7 +8,6 @@ Welcome to the `2024-internship-mobile-tasks` repository! This project contains 
 * [Introduction](#introduction)
 * [Prerequisites](#prerequisites)
 * [view](#tasks-overview)
-* [Submission Guidelines](#submission-guidelines)
 * [Resources](#resources)
 * [Contact](#contact)
 
