@@ -8,7 +8,7 @@ This project is designed to implement a Flutter user interface based on a refere
 
 * **Project Directory**: `mobile/Samuel_Tolossa/ecommers`
 * **Repository**: `2024-internship-mobile-tasks`
-* **Figma Design Link**: [Figma Link](https://www.figma.com/design/957Md2CrZ2B9KGjHy8RDcH/Internship?node-id=0-1&t=Yrw4etwCj3Z4NKCI-0) *(Replace with the actual Figma link)*
+* **Figma Design Link**: [Figma Link](https://www.figma.com/design/957Md2CrZ2B9KGjHy8RDcH/Internship?node-id=0-1&t=Yrw4etwCj3Z4NKCI-0) 
 
 ## Requirements
 
