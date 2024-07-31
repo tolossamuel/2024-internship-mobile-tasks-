@@ -7,7 +7,7 @@ class SizeOfProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     List<int> size = [39, 40, 41, 42, 43, 44, 45];
 
-    return Container(
+    return SizedBox(
       height: 60, // Fixed height for the ListView
       child: ListView.builder(
         itemCount: size.length,

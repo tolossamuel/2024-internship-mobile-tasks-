@@ -1,9 +1,8 @@
 import 'package:ecommers/Features/HomePage/Presentation/UI/header.dart';
-import 'package:ecommers/Features/HomePage/Presentation/UI/productImage.dart';
+import 'package:ecommers/Features/HomePage/Presentation/UI/product_image.dart';
 import 'package:ecommers/core/Colors/colors.dart';
 import 'package:ecommers/core/Text_Style/text_style.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

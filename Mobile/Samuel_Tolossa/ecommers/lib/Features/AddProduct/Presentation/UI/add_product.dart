@@ -1,5 +1,5 @@
 
-import 'package:ecommers/Features/AddProduct/Presentation/UI/Iinput_border.dart';
+import 'package:ecommers/Features/AddProduct/Presentation/UI/input_border.dart';
 import 'package:ecommers/Features/AddProduct/Presentation/UI/add_delete_button.dart';
 import 'package:flutter/material.dart';
 

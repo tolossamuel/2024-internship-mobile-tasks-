@@ -1,5 +1,5 @@
 // import 'package:ecommers/Features/AddProduct/Presentation/UI/addProduct.dart';
-import 'package:ecommers/Features/AddProduct/Presentation/UI/addProduct.dart';
+import 'package:ecommers/Features/AddProduct/Presentation/UI/add_product.dart';
 import 'package:ecommers/Features/HomePage/Presentation/UI/home.dart';
 import 'package:ecommers/Features/HomePage/Presentation/UI/Product_detail/detail_page.dart';
 import 'package:ecommers/Features/SearchProduct/Presentation/UI/search_screen.dart';

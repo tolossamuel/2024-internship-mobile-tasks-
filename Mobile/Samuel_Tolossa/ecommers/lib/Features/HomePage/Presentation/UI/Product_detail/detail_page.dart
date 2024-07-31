@@ -84,19 +84,19 @@ class DetailPage extends StatelessWidget {
                   )
                 ],
               ),
-               SizedBox(height: 15,),
+               const SizedBox(height: 15,),
                // size of product if avilable
-              Text("Size:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
-              SizedBox(height: 10,),
-              SizeOfProduct(),
-              SizedBox(height: 10,),
-               SizedBox(
+              const Text("Size:", style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
+              const SizedBox(height: 10,),
+              const SizeOfProduct(),
+              const SizedBox(height: 10,),
+               const SizedBox(
                 
                 child:  Description(),
                
                ),
-               SizedBox(height: 10,),
-               Row(
+               const SizedBox(height: 10,),
+               const Row(
 
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
