@@ -1,5 +1,7 @@
 import 'package:ecommers/Features/HomePage/Presentation/UI/header.dart';
 import 'package:ecommers/Features/HomePage/Presentation/UI/productImage.dart';
+import 'package:ecommers/core/Colors/colors.dart';
+import 'package:ecommers/core/Text_Style/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -13,33 +15,30 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-          color: Colors.white,
-          padding: const EdgeInsets.all(15),
-          child: Column(
-            children: [
-              // Header part
-              const HeaderPart(),
-              // Body part
-              const SizedBox(height: 20),
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.only(top: 5),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            "Available Products",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Container(
+    return Scaffold(
+      body: Container(
+        color: Colors.white,
+        padding: const EdgeInsets.fromLTRB(15,25,15,15),
+        child: Column(
+          children: [
+            // Header part
+            const HeaderPart(),
+            // Body part
+            const SizedBox(height: 20),
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.only(top: 5),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        TextStyles(text: "Available Products",fontColor: mainText,fontSizes: 20,fontWeight: FontWeight.w600,),
+                        GestureDetector(
+                          onTap: () => {
+                            Navigator.pushNamed(context, '/search')
+                          },
+                          child: Container(
                             width: 40,
                             height: 40,
                             decoration: BoxDecoration(
@@ -66,25 +65,30 @@ class _HomeScreenState extends State<HomeScreen> {
                               color: Color.fromARGB(255, 226, 225, 225),
                             ),
                           ),
-                        ],
-                      ),
-                      const SizedBox(height: 20),
-                      const Expanded(child: ProductImage()),
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+                   
+                    const Expanded(child: ProductImage()),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-        floatingActionButton: Container(
+      ),
+      floatingActionButton: GestureDetector(
+        onTap: () => {
+          Navigator.pushNamed(context, '/add-product'),
+        },
+        child: Container(
           width: 60,
           height: 60,
           decoration: BoxDecoration(
             borderRadius:BorderRadius.circular(35),
-            color: const Color.fromARGB(255, 33, 107, 243),
-
-
+            color: mainColor,
+            
+            
           ),
           child: const Icon(Icons.add,size: 40,color: Colors.white,),
         ),

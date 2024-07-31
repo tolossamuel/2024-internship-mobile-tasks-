@@ -1,3 +1,5 @@
+import 'package:ecommers/core/Colors/colors.dart';
+import 'package:ecommers/core/Text_Style/text_style.dart';
 import 'package:flutter/material.dart';
 
 class HeaderPart extends StatelessWidget {
@@ -21,16 +23,22 @@ class HeaderPart extends StatelessWidget {
                       
                     ),
                     const SizedBox(width: 10,),
-                    const SizedBox(
+                    SizedBox(
                       
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
-                            child: Text("July 14, 2023"),
+                            child: TextStyles(text: "July 14, 2023",fontColor: smallText,fontSizes: 10),
                           ),
                           SizedBox(
-                            child: Text("Hello,Yohannes"),
+                            child: Row(
+                              children: [
+                                TextStyles(text: "Hello, ",fontColor: mainText,fontSizes: 16,fontWeight: FontWeight.w300,),
+                                TextStyles(text: "Samuel",fontColor: mainText,fontSizes: 16,fontWeight: FontWeight.bold,),
+                                
+                              ],
+                            ),
                           )
                         ],
                       ),
@@ -52,7 +60,7 @@ class HeaderPart extends StatelessWidget {
                         )
                         
                       ),
-                      child: const Icon(Icons.notifications_none_sharp),
+                      child: const Icon(Icons.notifications_none_sharp,),
                     )
                   ],
                 ),

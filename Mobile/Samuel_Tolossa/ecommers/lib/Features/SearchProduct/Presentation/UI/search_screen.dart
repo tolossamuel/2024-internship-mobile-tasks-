@@ -19,6 +19,21 @@ class _SearchScreenState extends State<SearchScreen> {
       appBar: AppBar(
         title: const Text("Search Product"),
         centerTitle: true,
+        leading: GestureDetector(
+          onTap: () => {
+            Navigator.pop(context),
+          },
+          child: Container(
+            width: 10,
+            height: 10,
+            margin: const EdgeInsets.only(left: 10),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              color: Colors.white
+            ),
+            child: const Icon(Icons.arrow_back_ios_new,color: Colors.blue,),
+          ),
+        ),
       ),
       body: Container(
         padding: const EdgeInsets.fromLTRB(20,15,20,10),

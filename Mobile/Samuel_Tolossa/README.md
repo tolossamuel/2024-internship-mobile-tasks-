@@ -8,7 +8,7 @@ This project is designed to implement a Flutter user interface based on a refere
 
 * **Project Directory**: `mobile/Samuel_Tolossa/ecommers`
 * **Repository**: `2024-internship-mobile-tasks`
-* **Figma Design Link**: [Figma Link](https://www.figma.com/design/957Md2CrZ2B9KGjHy8RDcH/Internship?node-id=0-1&t=Yrw4etwCj3Z4NKCI-0) 
+* **Figma Design Link**: [Figma Link](https://www.figma.com/design/957Md2CrZ2B9KGjHy8RDcH/Internship?node-id=0-1&t=Yrw4etwCj3Z4NKCI-0)
 
 ## Requirements
 
@@ -39,12 +39,12 @@ Utilize Flutter widgets and components to build the UI:
 ## Task Verification
 
 * **Project Naming**: Ensure the project is named correctly as specified.
-* **Screenshots**: Take screenshots of the UI and add them when creating a pull request (PR). Below are the images of the implemented UI:
+* **Screenshots**:
 
-  ![Screenshot 1](images/flutter_01.png)
   ![Screenshot 2](images/flutter_02.png)
   ![Screenshot 3](images/flutter_03.png)
   ![Screenshot 4](images/flutter_04.png)
   ![Screenshot 5](images/flutter_05.png)
-  ![Screenshot 6](images/flutter_06.png)
+  ![Screenshot 6](images/flutter_06.png)	![Screenshot 1](https://file+.vscode-resource.vscode-cdn.net/home/samuel/Documents/2024-internship-mobile-tasks-/Mobile/Samuel_Tolossa/images/flutter_01.png)
+*  Take screenshots of the UI and add them when creating a pull request (PR). Below are the images of the implemented UI:
 * **GitHub Links**: Attach the GitHub links to the progress sheet as required.

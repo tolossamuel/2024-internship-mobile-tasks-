@@ -1,10 +1,12 @@
-import 'package:ecommers/Features/SearchProduct/Presentation/UI/Product_detail/delete_update_button.dart';
-import 'package:ecommers/Features/SearchProduct/Presentation/UI/Product_detail/description.dart';
-import 'package:ecommers/Features/SearchProduct/Presentation/UI/Product_detail/size_of_product.dart';
+import 'package:ecommers/Features/HomePage/Presentation/UI/Product_detail/delete_update_button.dart';
+import 'package:ecommers/Features/HomePage/Presentation/UI/Product_detail/description.dart';
+import 'package:ecommers/Features/HomePage/Presentation/UI/Product_detail/size_of_product.dart';
+import 'package:ecommers/core/Icons/back_icons.dart';
+import 'package:ecommers/core/Colors/colors.dart';
+import 'package:ecommers/core/Icons/star.dart';
+import 'package:ecommers/core/Text_Style/text_style.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
-import '../../../../AddProduct/Presentation/UI/add_delete_button.dart';
 
 class DetailPage extends StatelessWidget {
   const DetailPage({super.key});
@@ -13,20 +15,29 @@ class DetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: PreferredSize(
-        preferredSize:Size.fromHeight(286), 
-        child: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/image/image.png"),
-              fit: BoxFit.fill
-            )
-          ),
-        )),
+        
+        preferredSize:const Size.fromHeight(286), 
+        child: Stack(
+          children: [
+            Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/image/image.png"),
+                  fit: BoxFit.fill
+                )
+              ),
+            ),
+            const BackIcons()
+          ],
+        ),
+        
+        ),
       body: SingleChildScrollView(
+      
         child: Container(
           color: Colors.white,
           padding: const  EdgeInsets.all(15),
-          child:  const Column(
+          child:   Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // short description about the product price, rating and name of brand= ====================
@@ -38,11 +49,11 @@ class DetailPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       
-                      Text("Men's shoe"),
-                      SizedBox(
+                      TextStyles(text: "Men's shoe", fontColor: smallText, fontSizes: 16),
+                      const SizedBox(
                         height: 10,
                       ),
-                      Text(
+                      const Text(
                         "Deby Leather Shoes",
                         style:
                             TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -57,23 +68,18 @@ class DetailPage extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Icon(
-                            Icons.star,
-                            color: Color.fromARGB(255, 250, 235, 102),
-                            size: 20,
-                          ),
-                          Text(
-                            "(4.0)",
-                            style: TextStyle(fontSize: 10),
-                          ),
+                          const Star(),
+                         
+                          TextStyles(text: "(4.0)",fontColor: smallText,fontSizes: 12,)
         
         
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
-                        Text("\$120"),
+                        
+                        TextStyles(text: "\$120", fontColor: mainText, fontSizes: 16)
                     ],
                   )
                 ],

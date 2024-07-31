@@ -1,7 +1,7 @@
 // import 'package:ecommers/Features/AddProduct/Presentation/UI/addProduct.dart';
 import 'package:ecommers/Features/AddProduct/Presentation/UI/addProduct.dart';
 import 'package:ecommers/Features/HomePage/Presentation/UI/home.dart';
-import 'package:ecommers/Features/SearchProduct/Presentation/UI/Product_detail/detail_page.dart';
+import 'package:ecommers/Features/HomePage/Presentation/UI/Product_detail/detail_page.dart';
 import 'package:ecommers/Features/SearchProduct/Presentation/UI/search_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -16,12 +16,20 @@ class MyApp extends StatelessWidget {
     
     return MaterialApp(
       title: 'Ecommers',
+      initialRoute: "/",
+
+      routes: {
+        '/add-product' : (context) => const AddProduct(),
+        '/detail' : (context) => const DetailPage(),
+        '/search' : (context) => const SearchScreen(),
+      },
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        fontFamily: "Poppins",
         colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 255, 255, 255)),
         useMaterial3: true,
       ),
-      home: const SearchScreen(),
+      home: const HomeScreen(),
     );
   }
 }
