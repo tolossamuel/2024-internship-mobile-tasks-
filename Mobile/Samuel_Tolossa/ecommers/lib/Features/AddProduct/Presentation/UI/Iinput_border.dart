@@ -1,14 +1,17 @@
 
 
+import 'package:ecommers/Features/AddProduct/Presentation/UI/input_field.dart';
 import 'package:flutter/material.dart';
 
 class IinputBorder extends StatelessWidget {
   final int hight;
   final bool check;
+  final String text;
   const IinputBorder({
     super.key,
     required this.hight,
     required this.check,
+    required this.text
   });
 
   @override
@@ -30,7 +33,9 @@ class IinputBorder extends StatelessWidget {
                       const Icon(Icons.add_photo_alternate_outlined),
                       const SizedBox(height: 15),
                       const Text("upload image"),
-                    ] 
+                    ] else ...[
+                      InputField(text:text),
+                    ]
                   ],
                 ),
               ),

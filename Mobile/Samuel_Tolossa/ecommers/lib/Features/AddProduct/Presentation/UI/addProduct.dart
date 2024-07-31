@@ -15,6 +15,7 @@ class _AddProductState extends State<AddProduct> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: const Text("Add Product"),
         centerTitle: true,
         leading: GestureDetector(
@@ -34,28 +35,30 @@ class _AddProductState extends State<AddProduct> {
         ),
       ),
       body: SingleChildScrollView(
+        
         child: Container(
+          color: Colors.white,
           padding: const EdgeInsets.fromLTRB(20,15,20,10),
           child: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children:[
-              IinputBorder(hight: 190,check: true,),
+              IinputBorder(hight: 190,check: true,text: "Photo"),
               SizedBox(height: 10,),
               Text("name"),
               SizedBox(height: 5,),
-              IinputBorder(hight: 50,check: false,),
+              IinputBorder(hight: 56,check: false,text: "name"),
               SizedBox(height: 10,),
               Text("catagory"),
               SizedBox(height: 5,),
-              IinputBorder(hight: 50,check: false,),
+              IinputBorder(hight: 56,check: false,text: "catagory"),
               SizedBox(height: 10,),
               Text("price"),
               SizedBox(height: 5,),
-              IinputBorder(hight: 50,check: false,),
+              IinputBorder(hight: 56,check: false,text: "price"),
               SizedBox(height: 10,),
               Text("description"),
               SizedBox(height: 5,),
-              IinputBorder(hight: 140,check: false,),
+              IinputBorder(hight: 140,check: false,text: "description"),
               SizedBox(height: 15,),
               AddDeleteButton(color: Colors.blue,text: "ADD",borderColor: Colors.blue,),
               SizedBox(height: 10,),
