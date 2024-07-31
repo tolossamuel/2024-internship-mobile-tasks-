@@ -42,9 +42,15 @@ Utilize Flutter widgets and components to build the UI:
 * **Screenshots**:
 
   ![Screenshot 2](images/flutter_02.png)
-  ![Screenshot 3](images/flutter_03.png)
-  ![Screenshot 4](images/flutter_04.png)
-  ![Screenshot 5](images/flutter_05.png)
-  ![Screenshot 6](images/flutter_06.png)	![Screenshot 1](https://file+.vscode-resource.vscode-cdn.net/home/samuel/Documents/2024-internship-mobile-tasks-/Mobile/Samuel_Tolossa/images/flutter_01.png)
-*  Take screenshots of the UI and add them when creating a pull request (PR). Below are the images of the implemented UI:
-* **GitHub Links**: Attach the GitHub links to the progress sheet as required.
+* 
+* ![Screenshot 3](images/flutter_03.png)
+* 
+* ![Screenshot 4](images/flutter_04.png)
+* 
+* ![Screenshot 5](images/flutter_05.png)
+* 
+* ![Screenshot 6](images/flutter_06.png)
+* 
+* ![Screenshot 1](https://file+.vscode-resource.vscode-cdn.net/home/samuel/Documents/2024-internship-mobile-tasks-/Mobile/Samuel_Tolossa/images/flutter_01.png)
+* 
+*
