@@ -1,6 +1,6 @@
 
-import 'package:ecommers/Features/AddProduct/Presentation/UI/input_border.dart';
-import 'package:ecommers/Features/AddProduct/Presentation/UI/add_delete_button.dart';
+import 'package:ecommers/Presentation/UI/add_product/input_border.dart';
+import 'package:ecommers/Presentation/UI/add_product/add_delete_button.dart';
 import 'package:flutter/material.dart';
 
 class AddProduct extends StatefulWidget {

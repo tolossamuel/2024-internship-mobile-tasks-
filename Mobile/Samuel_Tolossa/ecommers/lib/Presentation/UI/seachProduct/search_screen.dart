@@ -1,8 +1,8 @@
 
 
 
-import 'package:ecommers/Features/SearchProduct/Presentation/UI/search_input_filter.dart';
-import 'package:ecommers/Features/SearchProduct/Presentation/UI/search_view.dart';
+import 'package:ecommers/Presentation/UI/seachProduct/search_input_filter.dart';
+import 'package:ecommers/Presentation/UI/seachProduct/search_view.dart';
 import 'package:flutter/material.dart';
 
 class SearchScreen extends StatefulWidget {

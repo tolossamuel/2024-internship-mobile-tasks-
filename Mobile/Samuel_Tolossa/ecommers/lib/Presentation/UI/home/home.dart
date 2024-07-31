@@ -1,5 +1,5 @@
-import 'package:ecommers/Features/HomePage/Presentation/UI/header.dart';
-import 'package:ecommers/Features/HomePage/Presentation/UI/product_image.dart';
+import 'package:ecommers/Presentation/UI/home/header.dart';
+import 'package:ecommers/Presentation/UI/home/product_image.dart';
 import 'package:ecommers/core/Colors/colors.dart';
 import 'package:ecommers/core/Text_Style/text_style.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,6 @@
-import 'package:ecommers/Features/HomePage/Presentation/UI/Product_detail/delete_update_button.dart';
-import 'package:ecommers/Features/HomePage/Presentation/UI/Product_detail/description.dart';
-import 'package:ecommers/Features/HomePage/Presentation/UI/Product_detail/size_of_product.dart';
+import 'package:ecommers/Presentation/UI/home/Product_detail/delete_update_button.dart';
+import 'package:ecommers/Presentation/UI/home/Product_detail/description.dart';
+import 'package:ecommers/Presentation/UI/home/Product_detail/size_of_product.dart';
 import 'package:ecommers/core/Icons/back_icons.dart';
 import 'package:ecommers/core/Colors/colors.dart';
 import 'package:ecommers/core/Icons/star.dart';

@@ -1,8 +1,8 @@
 // import 'package:ecommers/Features/AddProduct/Presentation/UI/addProduct.dart';
-import 'package:ecommers/Features/AddProduct/Presentation/UI/add_product.dart';
-import 'package:ecommers/Features/HomePage/Presentation/UI/home.dart';
-import 'package:ecommers/Features/HomePage/Presentation/UI/Product_detail/detail_page.dart';
-import 'package:ecommers/Features/SearchProduct/Presentation/UI/search_screen.dart';
+import 'package:ecommers/Presentation/UI/add_product/add_product.dart';
+import 'package:ecommers/Presentation/UI/home/home.dart';
+import 'package:ecommers/Presentation/UI/home/Product_detail/detail_page.dart';
+import 'package:ecommers/Presentation/UI/seachProduct/search_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
