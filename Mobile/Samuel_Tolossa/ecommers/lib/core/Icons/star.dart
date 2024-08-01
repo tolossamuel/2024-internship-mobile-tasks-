@@ -1,7 +1,8 @@
 
 
-import 'package:ecommers/core/Colors/colors.dart';
 import 'package:flutter/material.dart';
+
+import '../Colors/colors.dart';
 
 class Star extends StatelessWidget {
   const Star({super.key});

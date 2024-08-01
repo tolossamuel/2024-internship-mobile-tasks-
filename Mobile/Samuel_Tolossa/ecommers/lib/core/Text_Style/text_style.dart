@@ -24,7 +24,7 @@ class TextStyles extends StatelessWidget {
         color: fontColor,
         fontSize: fontSizes.toDouble(),
         fontWeight: fontWeight,
-        fontFamily: 'Poppin'
+       
       ),
 
     );
