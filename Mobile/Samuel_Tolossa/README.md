@@ -54,65 +54,31 @@ Utilize Flutter widgets and components to build the UI:
 
 ### Main Directory Structure
 
-- - - Certainly! Here's a tree representation of the directory structure along with a brief description for each part in a `README.md` format:
-
-      <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>markdown</span><div class="flex items-center"><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" class="icon-sm"><path fill="currentColor" fill-rule="evenodd" d="M7 5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-2v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h2zm2 2h5a3 3 0 0 1 3 3v5h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1zM5 9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1z" clip-rule="evenodd"></path></svg>Copy code</button></span></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-markdown"># E-commerce Mobile Application
-
-      This repository contains the codebase for an e-commerce mobile application. The project is organized into different layers to separate concerns and improve maintainability.
-
-      ## Project Structure
-
-      The project is divided into several main directories:
-
-      </code></div></div></pre>
-
-      ecommerce/
-      ├── lib
-      │ ├── core
-      │ ├── features
-      │ │ └── ecommerce
-      │ │ ├── Data
-      │ │ │ ├── data_source
-      │ │ │ ├── model
-      │ │ │ └── repositories
-      │ │ ├── Domain
-      │ │ │ ├── entity
-      │ │ │ ├── repositories
-      │ │ │ └── usecase
-      │ │ └── presentation
-      │ │ └── UI
-      │ │ ├── add_product
-      │ │ ├── home
-      │ │ └── searchProduct
-      └── main.dart
+- **`core/` - Contains core functionalities and utilities used across the application.**
+- **`features/` - Contains the features of the application. Each feature is further divided into layers:**
+  - **`Data/` - Contains data sources, models, and repositories for data management.**
+    - **`data_source/` - Handles data retrieval from various sources.**
+    - **`model/` - Contains data models used in the application.**
+    - **`repositories/` - Manages data operations and communication with data sources.**
+  - **`Domain/` - Contains business logic and domain entities.**
+    - **`entity/` - Contains domain entities.**
+    - **`repositories/` - Interface definitions for repositories.**
+    - **`usecase/` - Contains use cases representing the application's business logic.**
+  - **`presentation/` - Contains UI components and presentation logic.**
+    - **`UI/` - Contains different UI components.**
+      - **`add_product/` - UI for adding products.**
+      - **`home/` - Home screen UI.**
+      - **`searchProduct/` - UI for searching products.**
 
 ### Testing Directory Structure
 
-test/
-├── Data
-│ ├── data_source
-│ ├── model
-│ └── repositories
-├── Domain
-│ ├── entity
-│ ├── repositories
-│ └── use_case
-├── features
-├── helper
-
-Directory Details
-
-* **lib/main.dart** : Entry point of the Flutter application.
-* **lib/core/** : Contains core utilities and configurations used across the project.
-* **lib/features/** : Contains all feature-specific code.
-* **lib/features/ecommerce/** : The ecommerce feature.
-  *  **lib/features/ecommerce/Data/** : Data layer including models, data sources, and repositories.
-  *  **lib/features/ecommerce/Domain/** : Domain layer including entities, use cases, and repositories.
-  *  **lib/features/ecommerce/UI/** : Presentation layer including widgets, screens, and state management.
-
-### Testing
-
-* **test/features/ecommerce/Data/** : Tests for the Data layer.
-* **test/features/ecommerce/Domain/** : Tests for the Domain layer.
-* **test/features/ecommerce/Presentation/** : Tests for the Presentation layer.
-* **test/features/ecommerce/helper/** : Helper functions and mock data for testing.
+- **`Data/` - Contains tests for the data layer.**
+  - **`data_source/` - Tests for data sources.**
+  - **`model/` - Tests for data models.**
+  - **`repositories/` - Tests for data repositories.**
+- **`Domain/` - Contains tests for the domain layer.**
+  - **`entity/` - Tests for domain entities.**
+  - **`repositories/` - Tests for domain repository interfaces.**
+  - **`use_case/` - Tests for use cases representing business logic.**
+- **`features/` - Contains tests for various features.**
+- **`helper/` - Contains helper functions and utilities for tests.**
