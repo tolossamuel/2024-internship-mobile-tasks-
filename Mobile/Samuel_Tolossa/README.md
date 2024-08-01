@@ -54,26 +54,53 @@ Utilize Flutter widgets and components to build the UI:
 
 ### Main Directory Structure
 
-lib
-├── core
-├── features
-│   └── ecommerce
-│       ├── Data
-│       ├── Domain
-│       └── presentation/UI
-└── main.dart
+- - - Certainly! Here's a tree representation of the directory structure along with a brief description for each part in a `README.md` format:
+
+      <pre><div class="dark bg-gray-950 rounded-md border-[0.5px] border-token-border-medium"><div class="flex items-center relative text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md"><span>markdown</span><div class="flex items-center"><span class="" data-state="closed"><button class="flex gap-1 items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" class="icon-sm"><path fill="currentColor" fill-rule="evenodd" d="M7 5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-2v2a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3h2zm2 2h5a3 3 0 0 1 3 3v5h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1zM5 9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1z" clip-rule="evenodd"></path></svg>Copy code</button></span></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="!whitespace-pre hljs language-markdown"># E-commerce Mobile Application
+
+      This repository contains the codebase for an e-commerce mobile application. The project is organized into different layers to separate concerns and improve maintainability.
+
+      ## Project Structure
+
+      The project is divided into several main directories:
+
+      </code></div></div></pre>
+
+      ecommerce/
+      ├── lib
+      │ ├── core
+      │ ├── features
+      │ │ └── ecommerce
+      │ │ ├── Data
+      │ │ │ ├── data_source
+      │ │ │ ├── model
+      │ │ │ └── repositories
+      │ │ ├── Domain
+      │ │ │ ├── entity
+      │ │ │ ├── repositories
+      │ │ │ └── usecase
+      │ │ └── presentation
+      │ │ └── UI
+      │ │ ├── add_product
+      │ │ ├── home
+      │ │ └── searchProduct
+      └── main.dart
 
 ### Testing Directory Structure
 
 test/
+├── Data
+│ ├── data_source
+│ ├── model
+│ └── repositories
+├── Domain
+│ ├── entity
+│ ├── repositories
+│ └── use_case
 ├── features
-│   └── ecommerce
-│       ├── Data
-│       ├── Domain
-│       ├── Presentation
-│       └── helper
+├── helper
 
-### Directory Details
+Directory Details
 
 * **lib/main.dart** : Entry point of the Flutter application.
 * **lib/core/** : Contains core utilities and configurations used across the project.
