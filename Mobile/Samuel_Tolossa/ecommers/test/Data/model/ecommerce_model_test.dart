@@ -12,10 +12,10 @@ import '../../helper/dummy_data/read_json.dart';
 void main() {
   const EcommerceModel model = EcommerceModel(
     id: 1,
-    name: 'HP pc',
-    description: 'brand nw laptop',
-    imageUrl: 'http//samuel.com',
-    price: 2333.3
+    name: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
+    description: 'Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday',
+    imageUrl: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
+    price: 109.95
   );
 
   test(
@@ -30,7 +30,7 @@ void main() {
     'the model from json test must similar to the midel',
     () async{
 
-      final Map<String,dynamic> jsonData = json.decode(
+      final dynamic jsonData = json.decode(
         readJson('helper/dummy_data/json_respond_data.json')
       );
       final result = EcommerceModel.fromJson(jsonData);
@@ -43,11 +43,11 @@ void main() {
      () async {
       final result = model.toJson();
       final Map<String,dynamic> expectedJson = {
-        'id': 2,
-        'name': 'HP PC',
-        'disc' : 'brand new laptop',
-        'imageUrl' : 'http/samuel.com',
-        'price' : 23333.3
+        'id': 1,
+        'name': 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
+        'description': 'Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday',
+        'imageUrl': 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
+        'price': 109.95
       };
       expect(expectedJson, equals(result));
      }

@@ -8,21 +8,25 @@ class IinputBorder extends StatelessWidget {
   final int hight;
   final bool check;
   final String text;
+  final int width;
+ 
   const IinputBorder({
     super.key,
+    
     required this.hight,
     required this.check,
-    required this.text
+    required this.text,
+    required this.width,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-              width: 366,
+              width: width.toDouble(),
               height: hight.toDouble(),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: const Color.fromARGB(200, 238, 238, 238)
+                color: hight > 40? const Color.fromARGB(200, 238, 238, 238): Colors.white
               ),
               child: Center(
               

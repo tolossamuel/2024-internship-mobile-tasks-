@@ -27,17 +27,17 @@ class EcommerceUsecase extends Equatable {
     }
 
     // edit the product
-    Future<Either<Failure,EcommerceEntity>> editProduct(int id){
+    Future<Either<Failure,bool>> editProduct(int id){
       return repositories.editeProduct(id);
     }
 
     // delte product 
-    Future<Either<Failure,EcommerceEntity>> deleteProduct(int id){
+    Future<Either<Failure,bool>> deleteProduct(int id){
       return repositories.deleteProduct(id);
     }
 
     // add new product 
-    Future<Either<Failure,EcommerceEntity>> addProducts(EcommerceEntity entity ){
+    Future<Either<Failure,bool>> addProducts(EcommerceEntity entity ){
       return repositories.addProduct(entity);
     }
 

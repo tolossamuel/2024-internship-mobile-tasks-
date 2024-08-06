@@ -57,33 +57,33 @@ void main() {
   test(
     'should return edited product',
     () async {
-      when(repositories.editeProduct(id)).thenAnswer((_) async => const Right(singleProduct));
+      when(repositories.editeProduct(id)).thenAnswer((_) async => const Right(true));
       
       final result = await usecase.editProduct(id);
 
-      expect(result, const Right(singleProduct));
+      expect(result, const Right(true));
     },
   );
 
   test(
     'should return deleted by id',
     () async {
-      when(repositories.deleteProduct(id)).thenAnswer((_) async => const Right(singleProduct));
+      when(repositories.deleteProduct(id)).thenAnswer((_) async => const Right(true));
       
       final result = await usecase.deleteProduct(id);
 
-      expect(result, const Right(singleProduct));
+      expect(result, const Right(true));
     },
   );
 
   test(
     'should add new product to the data',
     () async {
-      when(repositories.addProduct(singleProduct)).thenAnswer((_) async => const Right(singleProduct));
+      when(repositories.addProduct(singleProduct)).thenAnswer((_) async => const Right(true));
       
       final result = await usecase.addProducts(singleProduct);
 
-      expect(result, const Right(singleProduct));
+      expect(result, const Right(true));
     },
   );
 

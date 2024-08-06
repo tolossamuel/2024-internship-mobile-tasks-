@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'filter.dart';
+
 class SearchInputFilter extends StatefulWidget {
   const SearchInputFilter({super.key});
 
@@ -26,15 +28,25 @@ class _SearchInputFilterState extends State<SearchInputFilter> {
                     ),
                   ),
                 ),
-                Container(
-                  margin: const EdgeInsets.only(left: 10),
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: const Icon(Icons.filter_list,size: 30,color:Colors.white,)),
+                GestureDetector(
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context, 
+                      builder: (BuildContext context){
+                        return const Filter();
+                      }
+                      );
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.only(left: 10),
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Icon(Icons.filter_list,size: 30,color:Colors.white,)),
+                ),
               ],
             );
   }

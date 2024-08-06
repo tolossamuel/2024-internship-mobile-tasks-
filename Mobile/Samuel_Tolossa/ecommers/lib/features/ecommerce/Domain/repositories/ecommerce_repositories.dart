@@ -10,10 +10,10 @@ abstract class EcommerceRepositories {
 
   Future<Either<Failure,List<EcommerceEntity>>> getAllProduct();
 
-  Future<Either<Failure,EcommerceEntity>> addProduct(EcommerceEntity product);
+  Future<Either<Failure,bool>> addProduct(EcommerceEntity product);
 
-  Future<Either<Failure,EcommerceEntity>> editeProduct(int id);
+  Future<Either<Failure,bool>> editeProduct(int id);
   
-  Future<Either<Failure,EcommerceEntity>> deleteProduct(int id);
+  Future<Either<Failure,bool>> deleteProduct(int id);
 
 }

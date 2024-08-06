@@ -16,6 +16,7 @@ class _AddProductState extends State<AddProduct> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+      
         backgroundColor: Colors.white,
         title: const Text('Add Product'),
         centerTitle: true,
@@ -43,23 +44,23 @@ class _AddProductState extends State<AddProduct> {
           child: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children:[
-              IinputBorder(hight: 190,check: true,text: 'Photo'),
+              IinputBorder(hight: 190,check: true,text: 'Photo',width: 366,),
               SizedBox(height: 10,),
               Text('name'),
               SizedBox(height: 5,),
-              IinputBorder(hight: 56,check: false,text: 'name'),
+              IinputBorder(hight: 56,check: false,text: 'name',width: 366,),
               SizedBox(height: 10,),
               Text('catagory'),
               SizedBox(height: 5,),
-              IinputBorder(hight: 56,check: false,text: 'catagory'),
+              IinputBorder(hight: 56,check: false,text: 'catagory',width: 366,),
               SizedBox(height: 10,),
               Text('price'),
               SizedBox(height: 5,),
-              IinputBorder(hight: 56,check: false,text: 'price'),
+              IinputBorder(hight: 56,check: false,text: 'price',width: 366,),
               SizedBox(height: 10,),
               Text('description'),
               SizedBox(height: 5,),
-              IinputBorder(hight: 140,check: false,text: 'description'),
+              IinputBorder(hight: 140,check: false,text: 'description',width: 366,),
               SizedBox(height: 15,),
               AddDeleteButton(color: Colors.blue,text: 'ADD',borderColor: Colors.blue,),
               SizedBox(height: 10,),
