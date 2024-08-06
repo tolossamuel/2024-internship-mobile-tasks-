@@ -287,10 +287,17 @@ class MockEcommerceRemoteDataSourceImpl extends _i1.Mock
       ) as _i8.Future<bool>);
 
   @override
-  _i8.Future<bool> editProduct(int? id) => (super.noSuchMethod(
+  _i8.Future<bool> editProduct(
+    int? id,
+    _i4.EcommerceModel? model,
+  ) =>
+      (super.noSuchMethod(
         Invocation.method(
           #editProduct,
-          [id],
+          [
+            id,
+            model,
+          ],
         ),
         returnValue: _i8.Future<bool>.value(false),
       ) as _i8.Future<bool>);

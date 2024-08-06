@@ -12,7 +12,7 @@ abstract class EcommerceRemoteDataSource {
   
   Future<EcommerceModel> getProduct(int id);
   Future<List<EcommerceModel>> getAllProduct();
-  Future<bool> editProduct(int id);
+  Future<bool> editProduct(int id,EcommerceModel model);
   Future<bool> deleteProduct(int id);
   Future<bool> addProduct(EcommerceModel data);
 }
@@ -25,7 +25,7 @@ class EcommerceRemoteDataSourceImpl implements EcommerceRemoteDataSource {
   
   @override
   Future<EcommerceModel> getProduct(int id) async {
-    final response = await client.get(Uri.parse(Urls.getByUrl()));
+    final response = await client.get(Uri.parse(Urls.getByUrl(id)));
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
       if (data != null) {
@@ -56,21 +56,42 @@ class EcommerceRemoteDataSourceImpl implements EcommerceRemoteDataSource {
   }
   
   @override
-  Future<bool> deleteProduct(int id) {
-    // TODO: implement deleteProduct
-    throw UnimplementedError();
+  Future<bool> deleteProduct(int id) async {
+    final response = await client.delete(Uri.parse(Urls.deleteProduct(id)));
+    if (response.statusCode == 200) {
+      return Future.value(true);
+    } else {
+      return Future.value(false);
+    }
+   
   }
   
   @override
-  Future<bool> editProduct(int id) {
-    // TODO: implement editProduct
-    throw UnimplementedError();
+  Future<bool> editProduct(int id, EcommerceModel model) async {
+    // update by put method also it take updated value
+    final response = await client.put(
+      Uri.parse(Urls.updateProduct(id)),
+      body:model.toJson()
+      );
+    if (response.statusCode == 200) {
+      return Future.value(true);
+    } else {
+      return Future.value(false);
+    }
   }
   
   @override
-  Future<bool> addProduct(EcommerceModel data) {
-    // TODO: implement addProduct
-    throw UnimplementedError();
+  Future<bool> addProduct(EcommerceModel data) async{
+    final response = await client.post(
+      Uri.parse(Urls.addNewProduct()),
+      body: data.toJson()
+    );
+    if (response.statusCode == 200) {
+      return Future.value(true);
+    } else {
+      return Future.value(false);
+    }
+ 
   }
 
 

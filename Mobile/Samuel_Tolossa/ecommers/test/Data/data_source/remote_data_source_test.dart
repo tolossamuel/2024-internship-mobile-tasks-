@@ -23,6 +23,14 @@ void main() {
     mockHttpClient = MockHttpClient();
     ecommerceRemoteDataSourceImpl = EcommerceRemoteDataSourceImpl(client: mockHttpClient);
   });
+  const EcommerceModel model = EcommerceModel (
+    id: 1,
+    name: 'name',
+    price: 1,
+    description: 'description',
+    imageUrl: 'imageUrl',
+  );
+  
   int id = 1;
   group(
     'remote data source must return the model',
@@ -31,7 +39,7 @@ void main() {
         'it must return the data by id',
         () async{
           when(
-            mockHttpClient.get(Uri.parse(Urls.getByUrl()))
+            mockHttpClient.get(Uri.parse(Urls.getByUrl(id)))
           ).thenAnswer(
             (_) async => http.Response (
               readJson('helper/dummy_data/json_respond_data.json'),200
@@ -47,7 +55,7 @@ void main() {
         'it must return server error',
         () async{
           when(
-            mockHttpClient.get(Uri.parse(Urls.getByUrl()))
+            mockHttpClient.get(Uri.parse(Urls.getByUrl(id)))
           ).thenAnswer(
             (_) async => http.Response (
               'server errro',404,
@@ -74,7 +82,62 @@ void main() {
           final result = await ecommerceRemoteDataSourceImpl.getAllProduct();
 
           expect(result, isA<List<EcommerceModel>>());
-        });    
+        });   
+
+
+        test(
+        'it must return true if the data is deleted else false from remote data source',
+        () async{
+          when(
+            mockHttpClient.delete(Uri.parse(Urls.deleteProduct(id)))
+          ).thenAnswer(
+            (_) async => http.Response (
+              'true',200
+            )
+          );
+
+          final result = await ecommerceRemoteDataSourceImpl.deleteProduct(id);
+
+          expect(result, true);
+        });
+
+        test(
+        'it must return true if the data is updated from remote data source else false',
+        () async{
+          when(
+            mockHttpClient.put(
+              Uri.parse(Urls.updateProduct(id)),
+              body: model.toJson()
+              )
+          ).thenAnswer(
+            (_) async => http.Response (
+              'true',200
+            )
+          );
+
+          final result = await ecommerceRemoteDataSourceImpl.editProduct(id, model);
+
+          expect(result, true);
+        });
+
+        test(
+        'it must return true if the data is add to remote data source else false',
+        () async{
+          when(
+            mockHttpClient.post(
+              Uri.parse(Urls.addNewProduct()),
+              body: model.toJson()
+              )
+          ).thenAnswer(
+            (_) async => http.Response (
+              'true',200
+            )
+          );
+
+          final result = await ecommerceRemoteDataSourceImpl.addProduct(model);
+
+          expect(result, true);
+        });
     }
     
     
