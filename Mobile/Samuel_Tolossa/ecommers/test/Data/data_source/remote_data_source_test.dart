@@ -1,6 +1,5 @@
 
-
-import 'package:ecommers/core/Error/error.dart';
+import 'package:ecommers/core/Error/failure.dart';
 import 'package:ecommers/core/const/const.dart';
 import 'package:ecommers/features/ecommerce/Data/data_source/remote_data_source.dart';
 import 'package:ecommers/features/ecommerce/Data/model/ecommerce_model.dart';

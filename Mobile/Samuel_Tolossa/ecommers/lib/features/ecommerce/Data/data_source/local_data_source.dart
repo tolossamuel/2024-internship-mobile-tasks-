@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../../../core/Error/error.dart';
+import '../../../../core/Error/failure.dart';
 import '../model/ecommerce_model.dart';
 
 abstract class LocalDataSource{

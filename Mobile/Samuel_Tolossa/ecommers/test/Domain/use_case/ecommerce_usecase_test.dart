@@ -27,6 +27,7 @@ void main() {
     EcommerceEntity(id: 1, name: 'pc', description: 'hp', imageUrl: 'http', price: 2222.2),
     EcommerceEntity(id: 2, name: 'pc', description: 'hp', imageUrl: 'http', price: 2222.2),
   ];
+  const EcommerceEntity product = EcommerceEntity(id: 1, name: 'pc', description: 'hp', imageUrl: 'http', price: 2222.2);
   
 
   
@@ -57,9 +58,9 @@ void main() {
   test(
     'should return edited product',
     () async {
-      when(repositories.editeProduct(id)).thenAnswer((_) async => const Right(true));
+      when(repositories.editeProduct(any,any)).thenAnswer((_) async => const Right(true));
       
-      final result = await usecase.editProduct(id);
+      final result = await usecase.editProduct(id,product);
 
       expect(result, const Right(true));
     },
@@ -79,6 +80,7 @@ void main() {
   test(
     'should add new product to the data',
     () async {
+      
       when(repositories.addProduct(singleProduct)).thenAnswer((_) async => const Right(true));
       
       final result = await usecase.addProducts(singleProduct);

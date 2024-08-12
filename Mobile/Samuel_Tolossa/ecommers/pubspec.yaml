@@ -27,6 +27,8 @@ dependencies:
   collection: ^1.18.0
   internet_connection_checker: ^1.0.0+1
   shared_preferences: ^2.3.1
+  flutter_bloc: ^8.1.6
+  bloc_test: ^9.1.7
 
 dev_dependencies:
   flutter_test:

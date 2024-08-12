@@ -15,21 +15,3 @@ class Failur  extends Equatable{
   ];
 }
 
-class ServerFailure extends Failur {
-  const ServerFailure ({
-    required super.message
-  });
-}
-
-class ConnectionFailur extends Failur {
-
-  const ConnectionFailur ({
-    required super.message
-  });
-
-}
-class CachException extends Failur {
-  const CachException ({
-    required super.message
-  });
-}

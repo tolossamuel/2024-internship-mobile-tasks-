@@ -4,6 +4,8 @@
 
 import 'package:equatable/equatable.dart';
 
+import '../../Data/model/ecommerce_model.dart';
+
 class EcommerceEntity extends Equatable{
   const EcommerceEntity ({
     required this.id,
@@ -17,7 +19,13 @@ class EcommerceEntity extends Equatable{
   final String description;
   final String imageUrl;
   final double price;
-  
+  EcommerceModel toModel() => EcommerceModel(
+    id:id,
+    name: name,
+    description: description,
+    imageUrl: imageUrl,
+    price: price
+  );
   @override
   List<Object?> get props => [
     id,

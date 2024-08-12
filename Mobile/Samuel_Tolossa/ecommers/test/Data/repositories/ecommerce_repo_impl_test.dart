@@ -1,7 +1,7 @@
 
 
 import 'package:dartz/dartz.dart';
-import 'package:ecommers/core/Error/error.dart';
+import 'package:ecommers/core/Error/failure.dart';
 import 'package:ecommers/features/ecommerce/Data/model/ecommerce_model.dart';
 import 'package:ecommers/features/ecommerce/Data/repositories/ecommerce_repo_impl.dart';
 import 'package:ecommers/features/ecommerce/Domain/entity/ecommerce_entity.dart';
@@ -95,10 +95,12 @@ void main() {
         () async {
           when(
             mockData.getProduct(id)
-          ).thenThrow(const ServerFailure(message: 'server error'));
+          ).thenThrow(const ServerFailure(message:'server Error'));
 
-          final result =  ecommerceRepoImpl.getProductById(id);
-          expect(result, throwsA(isA<ServerFailure>()));
+          final result =  await ecommerceRepoImpl.getProductById(id);
+          expect(result,  equals(
+          const Left(
+            ServerFailure(message:'server Error'))));
         });
 
         test(
@@ -106,10 +108,12 @@ void main() {
         () async {
           when(
             mockData.getAllProduct()
-          ).thenThrow(const ServerFailure(message: 'server error'));
+          ).thenThrow(const ServerFailure(message:'server Error'));
 
-          final result =  ecommerceRepoImpl.getAllProduct();
-          expect(result, throwsA(isA<ServerFailure>()));
+          final result =  await ecommerceRepoImpl.getAllProduct();
+          expect(result,  equals(
+          const Left(
+            ServerFailure(message:'server Error'))));
         });
 
         test(
@@ -117,10 +121,12 @@ void main() {
         () async {
           when(
             mockData.getAllProduct()
-          ).thenThrow(const ConnectionFailur(message: 'connection error'));
+          ).thenThrow(const ConnectionFailur(message:'Connection Error'));
 
-          final result =  ecommerceRepoImpl.getAllProduct();
-          expect(result, throwsA(isA<ConnectionFailur>()));
+          final result =  await ecommerceRepoImpl.getAllProduct();
+          expect(result,  equals(
+          const Left(
+            ConnectionFailur(message:'Connection Error'))));
         });
 
         test(
@@ -128,10 +134,12 @@ void main() {
         () async {
           when(
             mockData.getProduct(id)
-          ).thenThrow(const ConnectionFailur(message: 'connection error'));
+          ).thenThrow(const ConnectionFailur(message: 'Connection Error'));
 
-          final result =  ecommerceRepoImpl.getProductById(id);
-          expect(result, throwsA(isA<ConnectionFailur>()));
+          final result =  await ecommerceRepoImpl.getProductById(id);
+          expect(result,  equals(
+          const Left(
+            ConnectionFailur(message:'Connection Error'))));
         });
 
         test(
