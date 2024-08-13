@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 import 'add_delete_button.dart';
+import 'image_field.dart';
 import 'input_border.dart';
 
 class AddProduct extends StatefulWidget {
@@ -13,7 +14,10 @@ class AddProduct extends StatefulWidget {
 
 class _AddProductState extends State<AddProduct> {
   @override
+
   Widget build(BuildContext context) {
+    final Map<String, dynamic> data = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+  
     return Scaffold(
       appBar: AppBar(
       
@@ -41,30 +45,36 @@ class _AddProductState extends State<AddProduct> {
         child: Container(
           color: Colors.white,
           padding: const EdgeInsets.fromLTRB(20,15,20,10),
-          child: const Column(
+          child:  Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children:[
-              IinputBorder(hight: 190,check: true,text: 'Photo',width: 366,),
-              SizedBox(height: 10,),
-              Text('name'),
-              SizedBox(height: 5,),
-              IinputBorder(hight: 56,check: false,text: 'name',width: 366,),
-              SizedBox(height: 10,),
-              Text('catagory'),
-              SizedBox(height: 5,),
-              IinputBorder(hight: 56,check: false,text: 'catagory',width: 366,),
-              SizedBox(height: 10,),
-              Text('price'),
-              SizedBox(height: 5,),
-              IinputBorder(hight: 56,check: false,text: 'price',width: 366,),
-              SizedBox(height: 10,),
-              Text('description'),
-              SizedBox(height: 5,),
-              IinputBorder(hight: 140,check: false,text: 'description',width: 366,),
-              SizedBox(height: 15,),
-              AddDeleteButton(color: Colors.blue,text: 'ADD',borderColor: Colors.blue,),
-              SizedBox(height: 10,),
-              AddDeleteButton(color: Colors.white, text: 'DELETE',borderColor: Colors.red,),
+              ImageField(
+                hight: 190,
+                check: true,
+                text: 'Photo',
+                width: 366,
+                imageUrl:data['imageUrl'],
+                ),
+              const SizedBox(height: 10,),
+              const Text('name'),
+              const SizedBox(height: 5,),
+              IinputBorder(hight: 65,check: false,text: 'name',width: 366,placeHolder : data['name']),
+              const SizedBox(height: 10,),
+              const Text('catagory'),
+              const SizedBox(height: 5,),
+              IinputBorder(hight: 65,check: false,text: 'catagory',width: 366,placeHolder : data['name']),
+              const SizedBox(height: 10,),
+              const Text('price'),
+              const SizedBox(height: 5,),
+              IinputBorder(hight: 56,check: false,text: 'price',width: 366,placeHolder : data['price'].toString()),
+              const SizedBox(height: 10,),
+              const Text('description'),
+              const SizedBox(height: 5,),
+              IinputBorder(hight: 140,check: false,text: 'description',width: 366,placeHolder : data['disc']),
+              const SizedBox(height: 15,),
+              AddDeleteButton(color: Colors.blue,text:data['name'] != ''?'EDIT': 'ADD',borderColor: Colors.blue,),
+              const SizedBox(height: 10,),
+              const AddDeleteButton(color: Colors.white, text: 'DELETE',borderColor: Colors.red,),
               
             
             ], 

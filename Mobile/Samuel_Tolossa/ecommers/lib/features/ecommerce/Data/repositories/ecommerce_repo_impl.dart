@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import '../../../../core/Error/failure.dart';
+import '../../../../core/network/check_connectivity.dart';
 import '../../Domain/entity/ecommerce_entity.dart';
 import '../../Domain/repositories/ecommerce_repositories.dart';
 import '../data_source/remote_data_source.dart';
@@ -7,13 +8,19 @@ import '../model/ecommerce_model.dart';
 
 class EcommerceRepoImpl implements EcommerceRepositories  {
   final EcommerceRemoteDataSource remoteDataSource;
+  final NetworkInfo networkInfo;
   const EcommerceRepoImpl({
     required this.remoteDataSource,
+    required this.networkInfo
   });
 
   @override
   Future<Either<Failure, bool>> addProduct(EcommerceEntity product) async{
     try {
+      final connection = await networkInfo.isConnected;
+      if(connection == false){
+        return const Left(ConnectionFailur(message: 'connection error'));
+      }
       final data = product.toModel();
       final result = await remoteDataSource.addProduct(data);
       return Right(result);
@@ -23,9 +30,12 @@ class EcommerceRepoImpl implements EcommerceRepositories  {
   }
 
   @override
-  Future<Either<Failure, bool>> deleteProduct(int id) async{
+  Future<Either<Failure, bool>> deleteProduct(String id) async{
     try {
-      
+      final connection = await networkInfo.isConnected;
+      if(connection == false){
+        return const Left(ConnectionFailur(message: 'connection error'));
+      }
       final result = await remoteDataSource.deleteProduct(id);
       return Right(result);
     } on ConnectionFailur {
@@ -34,9 +44,12 @@ class EcommerceRepoImpl implements EcommerceRepositories  {
   }
 
   @override
-  Future<Either<Failure, bool>> editeProduct(int id,EcommerceModel data) async{
+  Future<Either<Failure, bool>> editeProduct(String id,EcommerceModel data) async{
     try {
-      
+      final connection = await networkInfo.isConnected;
+      if(connection == false){
+        return const Left(ConnectionFailur(message: 'connection error'));
+      }
       final result = await remoteDataSource.editProduct(id,data);
       return Right(result);
     } on ConnectionFailur {
@@ -47,7 +60,11 @@ class EcommerceRepoImpl implements EcommerceRepositories  {
   @override
   Future<Either<Failure, List<EcommerceEntity>>> getAllProduct() async {
     try {
-      final result = await remoteDataSource.getAllProduct();
+      final connection = await networkInfo.isConnected;
+      if(connection == false){
+        return const Left(ConnectionFailur(message: 'connection error'));
+      }
+      final result = await remoteDataSource.getAllProducts();
       final entities = EcommerceModel.listToEntity(result);
       return Right(entities);
     } on ServerFailure {
@@ -58,8 +75,12 @@ class EcommerceRepoImpl implements EcommerceRepositories  {
   }
 
   @override
-  Future<Either<Failure, EcommerceEntity>> getProductById(int id) async {
+  Future<Either<Failure, EcommerceEntity>> getProductById(String id) async {
     try {
+      final connection = await networkInfo.isConnected;
+      if(connection == false){
+        return const Left(ConnectionFailur(message: 'connection error'));
+      }
       final result = await remoteDataSource.getProduct(id);
       final entities = result.toEntity();
       return Right(entities);

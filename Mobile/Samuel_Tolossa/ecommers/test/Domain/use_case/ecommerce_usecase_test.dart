@@ -24,10 +24,9 @@ void main() {
 
 
   const List<EcommerceEntity> productData = [
-    EcommerceEntity(id: 1, name: 'pc', description: 'hp', imageUrl: 'http', price: 2222.2),
-    EcommerceEntity(id: 2, name: 'pc', description: 'hp', imageUrl: 'http', price: 2222.2),
+    EcommerceEntity(id: '1', name: 'pc', description: 'hp', imageUrl: 'http', price: 2222.2),
+    EcommerceEntity(id: '1', name: 'pc', description: 'hp', imageUrl: 'http', price: 2222.2),
   ];
-  const EcommerceEntity product = EcommerceEntity(id: 1, name: 'pc', description: 'hp', imageUrl: 'http', price: 2222.2);
   
 
   
@@ -41,9 +40,19 @@ void main() {
       expect(result, const Right(productData));
     },
   );
-
-  const EcommerceEntity singleProduct = EcommerceEntity(id: 1, name: 'pc', description: 'hp', imageUrl: 'http', price: 2222.2);
-  int id = 1;
+  String  datas =  '''
+  {
+    "data": {
+      "id": "6672776eb905525c145fe0bb",
+      "name": "Anime website",
+      "description": "Explore anime characters.",
+      "price": 123,
+      "imageUrl": "https://res.cloudinary.com/g5-mobile-track/image/upload/v1718777711/images/clmxnecvavxfvrz9by4w.jpg"
+    }
+  }
+  ''';
+  const EcommerceEntity singleProduct = EcommerceEntity(id: '1', name: 'pc', description: 'hp', imageUrl: 'http', price: 2222.2);
+  String id = '1';
   test(
     'should return detail or product by id',
     () async {
@@ -60,7 +69,7 @@ void main() {
     () async {
       when(repositories.editeProduct(any,any)).thenAnswer((_) async => const Right(true));
       
-      final result = await usecase.editProduct(id,product);
+      final result = await usecase.editProduct(id,datas);
 
       expect(result, const Right(true));
     },
@@ -81,9 +90,9 @@ void main() {
     'should add new product to the data',
     () async {
       
-      when(repositories.addProduct(singleProduct)).thenAnswer((_) async => const Right(true));
+      when(repositories.addProduct(any)).thenAnswer((_) async => const Right(true));
       
-      final result = await usecase.addProducts(singleProduct);
+      final result = await usecase.addProducts(datas);
 
       expect(result, const Right(true));
     },

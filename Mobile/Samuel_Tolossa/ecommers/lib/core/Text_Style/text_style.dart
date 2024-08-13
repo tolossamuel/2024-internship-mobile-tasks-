@@ -20,6 +20,7 @@ class TextStyles extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
+      overflow: TextOverflow.ellipsis,
       style: TextStyle(
         color: fontColor,
         fontSize: fontSizes.toDouble(),

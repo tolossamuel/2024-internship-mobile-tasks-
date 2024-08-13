@@ -5,31 +5,41 @@ import 'package:flutter/material.dart';
 import '../../../../../core/Colors/colors.dart';
 import '../../../../../core/border/border_style.dart';
 
-class InputField extends StatefulWidget {
+class InputField extends StatelessWidget {
   final String text;
+  final String disc;
+  final String placeHolder;
+ 
   const InputField({
     super.key,
     required this.text,
+    this.disc = '',
+    required this.placeHolder,
+
     });
 
   @override
-  State<InputField> createState() => _InputFieldState();
-}
-
-class _InputFieldState extends State<InputField> {
-  @override
   Widget build(BuildContext context) {
-    return  TextField(
-      decoration: InputDecoration(
-        hintText: widget.text,
-        focusedBorder:widget.text != 'description'? borderStyle:largInputBOrderStyle,
-        enabledBorder: widget.text != 'description'? borderStyle:largInputBOrderStyle,
-        disabledBorder: widget.text != 'description'? borderStyle:largInputBOrderStyle,
-        hintStyle: const TextStyle(
+    return  Expanded(
+      child: TextFormField(
+    
+        scribbleEnabled: true,
+        scrollPhysics: const BouncingScrollPhysics(),
+        maxLines: null,
+       
+        initialValue: placeHolder,
+        decoration: InputDecoration(
           
-          color: smallText,
-          fontSize: 14
-        )
+          hintText: disc,
+          focusedBorder:text != 'description'? borderStyle:largInputBOrderStyle,
+          enabledBorder: text != 'description'? borderStyle:largInputBOrderStyle,
+          disabledBorder: text != 'description'? borderStyle:largInputBOrderStyle,
+          hintStyle: const TextStyle(
+            
+            color: smallText,
+            fontSize: 14
+          )
+        ),
       ),
     );
   }

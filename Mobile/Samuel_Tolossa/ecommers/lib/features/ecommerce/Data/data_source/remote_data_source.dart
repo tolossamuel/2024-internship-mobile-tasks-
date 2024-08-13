@@ -8,16 +8,16 @@ import '../model/ecommerce_model.dart';
 abstract class EcommerceRemoteDataSource {
   
   /// Retrieves a single product by its [id].
-  Future<EcommerceModel> getProduct(int id);
+  Future<EcommerceModel> getProduct(String id);
 
   /// Retrieves all products.
-  Future<List<EcommerceModel>> getAllProduct();
+  Future<List<EcommerceModel>> getAllProducts();
 
   /// Edits a product identified by its [id] with the provided [model].
-  Future<bool> editProduct(int id, EcommerceModel model);
+  Future<bool> editProduct(String id, EcommerceModel model);
 
   /// Deletes a product identified by its [id].
-  Future<bool> deleteProduct(int id);
+  Future<bool> deleteProduct(String id);
 
   /// Adds a new product with the provided [data].
   Future<bool> addProduct(EcommerceModel data);
@@ -26,18 +26,20 @@ abstract class EcommerceRemoteDataSource {
 /// Implementation of the [EcommerceRemoteDataSource] interface.
 class EcommerceRemoteDataSourceImpl implements EcommerceRemoteDataSource {
   final http.Client client;
+  
 
   EcommerceRemoteDataSourceImpl({
     required this.client,
   });
   
   @override
-  Future<EcommerceModel> getProduct(int id) async {
+  Future<EcommerceModel> getProduct(String id) async {
     final response = await client.get(Uri.parse(Urls.getByUrl(id)));
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
       if (data != null) {
-        return EcommerceModel.fromJson(data);
+   
+        return EcommerceModel.fromJson(data['data']);
       } else {
         throw Exception('Error no data source');
       }
@@ -47,22 +49,28 @@ class EcommerceRemoteDataSourceImpl implements EcommerceRemoteDataSource {
   }
 
   @override
-  Future<List<EcommerceModel>> getAllProduct() async {
-    final response = await client.get(Uri.parse(Urls.getAll()));
-    if (response.statusCode == 200) {
-      final data = json.decode(response.body);
-      if (data != null) {
-        return EcommerceModel.getAllProduct(data);
+  Future<List<EcommerceModel>> getAllProducts() async {
+    try {
+      final response = await client.get(Uri.parse(Urls.getAll()));
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+     
+        if (data != null) {
+
+          return EcommerceModel.getAllProduct(data);
+        } else {
+          throw const ServerFailure(message: 'server Error');
+        }
       } else {
-        throw const ServerFailure(message: 'server Error');
+        throw const ConnectionFailur(message: 'server Error');
+      } } catch (e) {
+       
+        throw ConnectionFailur(message: e.toString());
       }
-    } else {
-      throw const ConnectionFailur(message: 'server Error');
-    }
   }
   
   @override
-  Future<bool> deleteProduct(int id) async {
+  Future<bool> deleteProduct(String id) async {
     final response = await client.delete(Uri.parse(Urls.deleteProduct(id)));
     if (response.statusCode == 200) {
       return Future.value(true);
@@ -72,7 +80,7 @@ class EcommerceRemoteDataSourceImpl implements EcommerceRemoteDataSource {
   }
   
   @override
-  Future<bool> editProduct(int id, EcommerceModel model) async {
+  Future<bool> editProduct(String id, EcommerceModel model) async {
     // update by put method also it take updated value
     final response = await client.put(
       Uri.parse(Urls.updateProduct(id)),

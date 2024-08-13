@@ -5,10 +5,10 @@ import '../model/ecommerce_model.dart';
 
 abstract class LocalDataSource{
   Future<List<EcommerceModel>> getAllFromLocal();
-  Future<EcommerceModel> getSingleProduct(int id);
+  Future<EcommerceModel> getSingleProduct(String id);
 
   Future<bool> addCach(EcommerceModel data);
-  Future<bool> deleteCach(int id);
+  Future<bool> deleteCach(String id);
 
 }
 const String idOfData  = 'local_ecommer_data';
@@ -22,10 +22,10 @@ class LocalDataSourceImpl implements LocalDataSource{
   @override
   Future<List<EcommerceModel>> getAllFromLocal() {
     final jsonString = sharedPreferences.getString(idOfData);
-    
-    if (jsonString != null){
+    if (jsonString != null) {
       final result = json.decode(jsonString);
     return Future.value(EcommerceModel.getAllProduct(result));
+
     }
     else {
       
@@ -34,18 +34,22 @@ class LocalDataSourceImpl implements LocalDataSource{
   }
 
   @override
-  Future<EcommerceModel> getSingleProduct(int num) {
+  Future<EcommerceModel> getSingleProduct(String num) {
 
     final jsonString = sharedPreferences.getString(idOfData);
     try {
     if (jsonString != null) {
-      final result = EcommerceModel.fromJson(json.decode(jsonString));
+      final jsons = json.decode(jsonString);
+
+      final result = EcommerceModel.fromJson(jsons['data']);
+
       return Future.value(result);
     }
     else {
       throw const CachException(message: 'No data found');
     }
     } catch (e) {
+
       throw const CachException(message: 'No data found');
      
       }
@@ -70,7 +74,7 @@ class LocalDataSourceImpl implements LocalDataSource{
   }
   
   @override
-  Future<bool> deleteCach(int id) async{
+  Future<bool> deleteCach(String id) async{
     try{
       
       List<EcommerceModel> products =  await getAllFromLocal();

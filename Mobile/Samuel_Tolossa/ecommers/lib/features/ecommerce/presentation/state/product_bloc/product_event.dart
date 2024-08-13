@@ -1,8 +1,5 @@
 
 import 'package:equatable/equatable.dart';
-
-import '../../../Domain/entity/ecommerce_entity.dart';
-
 abstract class ProductEvent  extends Equatable{
   const ProductEvent ();
 
@@ -18,7 +15,7 @@ class LoadAllProductEvent extends ProductEvent {
 }
 
 class GetSingleProductEvent extends ProductEvent {
-  final int id;
+  final String id;
   const GetSingleProductEvent({
     required this.id
   });
@@ -28,7 +25,7 @@ class GetSingleProductEvent extends ProductEvent {
 
 
 class DeleteProductEvent extends ProductEvent {
-  final int id;
+  final String id;
   const DeleteProductEvent({
     required this.id
   });
@@ -38,7 +35,7 @@ class DeleteProductEvent extends ProductEvent {
 
 
 class CreateProductEvent extends ProductEvent {
-  final EcommerceEntity ecommerceEntity;
+  final String ecommerceEntity;
   const CreateProductEvent({
     required this.ecommerceEntity
   });
@@ -48,8 +45,8 @@ class CreateProductEvent extends ProductEvent {
 
 
 class UpdateProductEvent extends ProductEvent {
-  final EcommerceEntity ecommerceEntity;
-  final int id;
+  final String ecommerceEntity;
+  final String id;
   const UpdateProductEvent({
     required this.ecommerceEntity,
     required this.id

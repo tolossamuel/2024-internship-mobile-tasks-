@@ -29,22 +29,23 @@ void main() {
       expect(productBloc.state, IntialState());
     }
     );
+  Map data = {'id': '1', 'name': 'pc', 'description': 'hp', 'imageUrl': 'http', 'price': 2222.2};
 
   final EcommerceEntity ecommerceEntity = const EcommerceEntity(
-    id: 1, 
+    id: '1', 
     name: 'pc', 
     description: 'description', 
     imageUrl: 'imageUrl', 
     price: 123.2);
   final List<EcommerceEntity> listProduct = const [
     EcommerceEntity(
-    id: 1, 
+    id: '1', 
     name: 'pc', 
     description: 'description', 
     imageUrl: 'imageUrl', 
     price: 123.2),
     EcommerceEntity(
-    id: 1, 
+    id: '1', 
     name: 'pc', 
     description: 'description', 
     imageUrl: 'imageUrl', 
@@ -61,7 +62,7 @@ void main() {
           ).thenAnswer((_) async=> Right(ecommerceEntity));
           return productBloc;
         },
-        act: (bloc) => bloc.add(const GetSingleProductEvent(id: 1)),
+        act: (bloc) => bloc.add(const GetSingleProductEvent(id: '1')),
           expect: () => [
             LoadingState(),
             LoadedSingleProductState(product: ecommerceEntity)
@@ -76,7 +77,7 @@ void main() {
           ).thenAnswer((_) async => const Left(ConnectionFailur(message: 'try again')));
           return productBloc;
         },
-        act: (bloc) => bloc.add(const GetSingleProductEvent(id: 1)),
+        act: (bloc) => bloc.add(const GetSingleProductEvent(id: '1')),
           expect: () => [
             LoadingState(),
             ErrorState(messages: 'try again'),
@@ -125,7 +126,7 @@ void main() {
           ).thenAnswer((_) async => const Right(true));
           return productBloc;
         },
-        act: (bloc) => bloc.add(CreateProductEvent(ecommerceEntity: ecommerceEntity)),
+        act: (bloc) => bloc.add(CreateProductEvent(ecommerceEntity: data.toString())),
           expect: () => [
             LoadingState(),
             SuccessAdd(add:true),
@@ -141,7 +142,7 @@ void main() {
           ).thenAnswer((_) async => const Left(ConnectionFailur(message: 'try again')));
           return productBloc;
         },
-        act: (bloc) => bloc.add(CreateProductEvent(ecommerceEntity: ecommerceEntity)),
+        act: (bloc) => bloc.add(CreateProductEvent(ecommerceEntity: data.toString())),
           expect: () => [
             LoadingState(),
             ErrorState(messages: 'try again'),
@@ -158,7 +159,7 @@ void main() {
           ).thenAnswer((_) async => const Right(true));
           return productBloc;
         },
-        act: (bloc) => bloc.add(const DeleteProductEvent(id: 1)),
+        act: (bloc) => bloc.add(const DeleteProductEvent(id: '1')),
           expect: () => [
             LoadingState(),
             SuccessDelete(deleted:true),
@@ -174,7 +175,7 @@ void main() {
           ).thenAnswer((_) async => const Left(ConnectionFailur(message: 'try again')));
           return productBloc;
         },
-        act: (bloc) => bloc.add(const DeleteProductEvent(id: 1)),
+        act: (bloc) => bloc.add(const DeleteProductEvent(id: '1')),
           expect: () => [
             LoadingState(),
             ErrorState(messages: 'try again'),
@@ -191,7 +192,7 @@ void main() {
           ).thenAnswer((_) async => const Right(true));
           return productBloc;
         },
-        act: (bloc) => bloc.add( UpdateProductEvent(id: 1,ecommerceEntity:ecommerceEntity)),
+        act: (bloc) => bloc.add( UpdateProductEvent(id: '1',ecommerceEntity:data.toString())),
           expect: () => [
             LoadingState(),
             SuccessEdit(edited:true),
@@ -207,7 +208,7 @@ void main() {
           ).thenAnswer((_) async => const Left(ConnectionFailur(message: 'try again')));
           return productBloc;
         },
-        act: (bloc) => bloc.add(UpdateProductEvent(id: 1,ecommerceEntity: ecommerceEntity)),
+        act: (bloc) => bloc.add(UpdateProductEvent(id: '1',ecommerceEntity: data.toString())),
           expect: () => [
             LoadingState(),
             ErrorState(messages: 'try again'),

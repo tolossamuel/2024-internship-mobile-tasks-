@@ -10,10 +10,15 @@ import 'size_of_product.dart';
 
 
 class DetailPage extends StatelessWidget {
-  const DetailPage({super.key});
+ 
+  const DetailPage({
+    super.key,
+    });
 
   @override
   Widget build(BuildContext context) {
+    final Map<String, dynamic> data = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final int titles = 20 < data['name'].length ? 20 : data['name'].length;
     return  Scaffold(
       appBar: PreferredSize(
         
@@ -21,9 +26,9 @@ class DetailPage extends StatelessWidget {
         child: Stack(
           children: [
             Container(
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/image/image.png'),
+                  image: NetworkImage(data['imageUrl']),
                   fit: BoxFit.fill
                 )
               ),
@@ -50,14 +55,14 @@ class DetailPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       
-                      TextStyles(text: 'Men\'s shoe', fontColor: smallText, fontSizes: 16),
+                      
                       const SizedBox(
                         height: 10,
                       ),
-                      const Text(
-                        'Deby Leather Shoes',
+                      Text(
+                        '${data['name'].substring(0,titles)}...',
                         style:
-                            TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                            const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                     ],
                     
@@ -80,7 +85,7 @@ class DetailPage extends StatelessWidget {
                         height: 10,
                       ),
                         
-                        TextStyles(text: '\$120', fontColor: mainText, fontSizes: 16)
+                        TextStyles(text: '\$${data["price"]}', fontColor: mainText, fontSizes: 16)
                     ],
                   )
                 ],
@@ -91,18 +96,26 @@ class DetailPage extends StatelessWidget {
               const SizedBox(height: 10,),
               const SizeOfProduct(),
               const SizedBox(height: 10,),
-               const SizedBox(
+              SizedBox(
                 
-                child:  Description(),
+                child:  Description(text:data['disc']),
                
                ),
                const SizedBox(height: 10,),
-               const Row(
+              Row(
 
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  DeleteUpdateButton(text: 'DELETE',bordColor: Colors.red,bottonColor: Colors.white,),
-                  DeleteUpdateButton(text: 'UPDATE',bordColor: Colors.blue,bottonColor: Colors.blue,),
+                  DeleteUpdateButton(
+                    id: data['id'],
+                    text: 'DELETE',bordColor: Colors.red,bottonColor: Colors.white,),
+                  DeleteUpdateButton(
+                    imageUrl:data['imageUrl'],
+                  id: data['id'],
+                  name: data['name'],
+                  price: data['price'],
+                  disc: data['disc'],
+                  text: 'UPDATE',bordColor: Colors.blue,bottonColor: Colors.blue,),
                 ],
                )
             ],

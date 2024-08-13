@@ -20,16 +20,12 @@ void main() {
 
   final listOfModel = readJson('helper/dummy_data/all_data.json');
   final singleModel = readJson('helper/dummy_data/json_respond_data.json');
+  final datas = json.decode(listOfModel);
   EcommerceModel model = const EcommerceModel(
-    id: 1,
-    name: 'name',
-    price: 1,
-    description: 'description',
-    imageUrl: 'imageUrl',
-  );
-
+    id: '1', 
+    name: 'name', description: 'description', imageUrl: 'imageUrl', price: 2);
  
-  int id = 3;
+  String id = '3';
   group(
     'test the local data source',
     (){
@@ -40,11 +36,10 @@ void main() {
           when(
             mockSharedPreferences.getString(any)
           ).thenReturn(listOfModel);
-
           final result = await localDataSourceImpl.getAllFromLocal();
-          
+
           verify(mockSharedPreferences.getString(any));
-          expect(result, equals(EcommerceModel.getAllProduct(json.decode(listOfModel))));
+          expect(result, equals(EcommerceModel.getAllProduct(datas)));
         });
 
 
@@ -60,7 +55,7 @@ void main() {
             
             verify(mockSharedPreferences.getString(any));
 
-            final last = EcommerceModel.fromJson(json.decode(singleModel));
+            final last = EcommerceModel.fromJson(json.decode(singleModel)['data']);
 
             expect(result, equals(last));
           });

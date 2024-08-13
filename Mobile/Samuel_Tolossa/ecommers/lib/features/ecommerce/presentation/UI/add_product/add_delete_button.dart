@@ -35,7 +35,7 @@ class AddDeleteButton extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
             // Conditionally add widgets based on the 'check' variable
-                        if (text == 'ADD') ...[
+                        if (text != 'DELETE') ...[
                         Text(text,style: const TextStyle(color: Colors.white),),
                         ] else ...[
                           Text(text,style: const TextStyle(color: Color.fromARGB(255, 255, 1, 1)),),

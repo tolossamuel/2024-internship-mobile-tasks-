@@ -18,15 +18,17 @@ class EcommerceModel extends EcommerceEntity {
 
   factory EcommerceModel.fromJson(dynamic json) => EcommerceModel(
     id: json['id'],
-    name: json['title'],
+    name: json['name'],
     description: json['description'],
-    imageUrl: json['image'],
+    imageUrl: json['imageUrl'],
     price: json['price'].toDouble()
   );
  
-  static List<EcommerceModel> getAllProduct(List<dynamic> jsons) {
+  static List<EcommerceModel> getAllProduct(dynamic jsons) {
+    
     List<EcommerceModel> products = [];
-    for (dynamic product in jsons){
+    for (dynamic product in jsons['data']){
+   
       products.add(EcommerceModel.fromJson(product));
     }
     return products;

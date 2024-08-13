@@ -14,17 +14,19 @@ import '../../helper/test_hlper.mocks.dart';
 
 void main() {
   late EcommerceRepoImpl  ecommerceRepoImpl;
+  late MockNetworkInfoImpl mockNetworkInfoImpl;
   late MockEcommerceRemoteDataSourceImpl mockData;
 
 
   setUp(() {
     mockData = MockEcommerceRemoteDataSourceImpl();
-    ecommerceRepoImpl = EcommerceRepoImpl(remoteDataSource: mockData);
+    mockNetworkInfoImpl = MockNetworkInfoImpl();
+    ecommerceRepoImpl = EcommerceRepoImpl(remoteDataSource: mockData, networkInfo: mockNetworkInfoImpl);
   });
 
 
   EcommerceEntity ecommerceEntity = const EcommerceEntity(
-    id: 1,
+    id: '1',
     name: 'hp pc',
     description: 'brand new hp pc',
     imageUrl: 'http/hp.png',
@@ -48,9 +50,9 @@ void main() {
   // )
   // ];
 
-  int id = 1;
+  String id = '1';
   const EcommerceModel ecommerceModel =  EcommerceModel(
-    id: 1,
+    id: '1',
     name: 'hp pc',
     description: 'brand new hp pc',
     imageUrl: 'http/hp.png',
@@ -58,14 +60,14 @@ void main() {
   );
   const List<EcommerceModel> listEcommerceModel = [
      EcommerceModel(
-    id: 1,
+    id: '1',
     name: 'hp pc',
     description: 'brand new hp pc',
     imageUrl: 'http/hp.png',
     price: 234.4
   ),
   EcommerceModel(
-    id: 1,
+    id: '1',
     name: 'hp pc',
     description: 'brand new hp pc',
     imageUrl: 'http/hp.png',
@@ -81,8 +83,13 @@ void main() {
       test(
         'test the respond of the repo impl success', 
         () async {
+           when(
+            mockNetworkInfoImpl.isConnected,
+           
+          ).thenAnswer((_) async => true);
           when(
-            mockData.getProduct(id)
+            mockData.getProduct(any),
+           
           ).thenAnswer((_) async => ecommerceModel);
 
           final result = await ecommerceRepoImpl.getProductById(id);
@@ -93,6 +100,10 @@ void main() {
         test(
         'test get unsecceful respond from the repo impl', 
         () async {
+           when(
+            mockNetworkInfoImpl.isConnected,
+           
+          ).thenAnswer((_) async => true);
           when(
             mockData.getProduct(id)
           ).thenThrow(const ServerFailure(message:'server Error'));
@@ -106,8 +117,12 @@ void main() {
         test(
         'test get unsecceful from get all product from the repo impl', 
         () async {
+           when(
+            mockNetworkInfoImpl.isConnected,
+           
+          ).thenAnswer((_) async => true);
           when(
-            mockData.getAllProduct()
+            mockData.getAllProducts()
           ).thenThrow(const ServerFailure(message:'server Error'));
 
           final result =  await ecommerceRepoImpl.getAllProduct();
@@ -119,8 +134,12 @@ void main() {
         test(
         'test get unsecceful connection error from get all product from the repo impl', 
         () async {
+           when(
+            mockNetworkInfoImpl.isConnected,
+           
+          ).thenAnswer((_) async => true);
           when(
-            mockData.getAllProduct()
+            mockData.getAllProducts()
           ).thenThrow(const ConnectionFailur(message:'Connection Error'));
 
           final result =  await ecommerceRepoImpl.getAllProduct();
@@ -132,6 +151,10 @@ void main() {
         test(
         'test get unsecceful connection error from get all product from the repo impl', 
         () async {
+           when(
+            mockNetworkInfoImpl.isConnected,
+           
+          ).thenAnswer((_) async => true);
           when(
             mockData.getProduct(id)
           ).thenThrow(const ConnectionFailur(message: 'Connection Error'));
@@ -145,8 +168,12 @@ void main() {
         test(
           'test getall product secceful from the repo impl', 
           () async {
+             when(
+            mockNetworkInfoImpl.isConnected,
+           
+          ).thenAnswer((_) async => true);
             when(
-              mockData.getAllProduct()
+              mockData.getAllProducts()
             ).thenAnswer((_) async => listEcommerceModel);
 
             // final result = await ecommerceRepoImpl.getAllProduct();

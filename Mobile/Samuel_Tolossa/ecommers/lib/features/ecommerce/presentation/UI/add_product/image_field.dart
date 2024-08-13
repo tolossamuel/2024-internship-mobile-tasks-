@@ -2,29 +2,26 @@
 
 import 'package:flutter/material.dart';
 
-import 'input_field.dart';
 
-class IinputBorder extends StatelessWidget {
+class ImageField extends StatelessWidget {
   final int hight;
   final bool check;
   final String text;
   final int width;
-  final String placeHolder;
-
-  const IinputBorder({
+  final String imageUrl;
+ 
+  const ImageField({
     super.key,
     
     required this.hight,
     required this.check,
     required this.text,
     required this.width,
-    required this.placeHolder,
-
+    this.imageUrl = '',
   });
 
   @override
   Widget build(BuildContext context) {
-  
     return Container(
               width: width.toDouble(),
               height: hight.toDouble(),
@@ -37,15 +34,17 @@ class IinputBorder extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-            // Conditionally add widgets based on the 'check' variable
-                  if (check) ...[
+            // Conditionally add widgets based on the 'check' variabl
+            if(imageUrl == '') ...[
                       const Icon(Icons.add_photo_alternate_outlined),
                       const SizedBox(height: 15),
                       const Text('upload image'),
-                    ] else ...[
-                      InputField(text:text,placeHolder:placeHolder,),
+                  ] else ...[
+                      Image.network(imageUrl, height: hight.toDouble(),
+                      fit: BoxFit.fitWidth,),
                     ]
                   ],
+                  
                 ),
               ),
             );

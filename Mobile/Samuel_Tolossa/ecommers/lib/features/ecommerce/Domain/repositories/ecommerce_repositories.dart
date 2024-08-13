@@ -7,14 +7,14 @@ import '../entity/ecommerce_entity.dart';
 abstract class EcommerceRepositories{
 
 
-  Future<Either<Failure,EcommerceEntity>> getProductById(int id);
+  Future<Either<Failure,EcommerceEntity>> getProductById(String id);
 
   Future<Either<Failure,List<EcommerceEntity>>> getAllProduct();
 
   Future<Either<Failure,bool>> addProduct(EcommerceEntity product);
 
-  Future<Either<Failure,bool>> editeProduct(int id,EcommerceModel data);
+  Future<Either<Failure,bool>> editeProduct(String id,EcommerceModel data);
   
-  Future<Either<Failure,bool>> deleteProduct(int id);
+  Future<Either<Failure,bool>> deleteProduct(String id);
 
 }

@@ -1,95 +1,70 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../core/Text_Style/text_style.dart';
+
 class ProductImage extends StatelessWidget {
-  const ProductImage({super.key});
+  final String imageUrl;
+  final double price;
+  final String disc;
+  final String title;
+  final String id;
+
+  const ProductImage({
+    super.key,
+    required this.disc,
+    required this.imageUrl,
+    required this.price,
+    required this.title,
+    required this.id
+    });
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 3,
-      itemBuilder: (context, index){
+    int titles = 20 < title.length ? 20 : title.length;
+    int discription = 30 < disc.length ? 30 : disc.length;
       return  GestureDetector(
         onTap: () => {
-          Navigator.pushNamed(context, '/detail')
+          Navigator.pushNamed(
+            context, '/detail',
+            arguments: {'disc':disc,'imageUrl':imageUrl,'price':price,'name':title,'id':id}
+            )
         },
-        child: Column(
-          children: [
-            Container(
-              height: 224,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(14.5),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Color.fromARGB(255, 189, 187, 187),
-                      offset: Offset(0, 1),
-                      spreadRadius: 1,
-                    )
-                  ]),
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: Image.asset(
-                      'assets/image/shoe.png',
-                    ),
-                  ),
-            
-                  // about products ==========================================
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(10, 10, 15, 10),
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Deby Leather Shoes',
-                              style:
-                                  TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text('Men\'s shoe'),
-                          ],
-                        ),
-                        Column(
-                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('\$120'),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Icon(
-                                  Icons.star,
-                                  color: Color.fromARGB(255, 250, 235, 102),
-                                  size: 20,
-                                ),
-                                Text(
-                                  '(4.0)',
-                                  style: TextStyle(fontSize: 10),
-                                ),
-                              ],
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              ),
+        child: Card(
+      child: Column(
+        children: [
+          FadeInImage.assetNetwork(
+            placeholder: 'assets/image/background.png',
+            image: imageUrl,
+            fit: BoxFit.fitWidth,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              TextStyles(text: '${title.substring(0,titles)}...', fontColor: Colors.black,fontWeight: FontWeight.w500, fontSizes: 20),
+              TextStyles(text: '\$$price', fontColor: Colors.black, fontSizes: 14),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 25.0, right: 25,bottom: 30),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                
+                TextStyles(text: '${disc.substring(0,discription)}...', fontColor: Colors.grey, fontSizes: 12),
+                const Spacer(),
+                const Icon(Icons.star, color: Colors.yellow, size: 15),
+                
+                TextStyles(
+                  text: '(4.0)',
+                  fontColor: Colors.grey,
+                  fontSizes: 12,
+                )
+              ],
             ),
-            const SizedBox(height: 15,),
-          ],
-        ),
-      );}
-    );
+          ),
+        ],
+      ),
+    )
+      );
   }
 }

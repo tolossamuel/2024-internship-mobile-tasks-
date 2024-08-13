@@ -23,14 +23,14 @@ void main() {
     ecommerceRemoteDataSourceImpl = EcommerceRemoteDataSourceImpl(client: mockHttpClient);
   });
   const EcommerceModel model = EcommerceModel (
-    id: 1,
+    id: '1',
     name: 'name',
     price: 1,
     description: 'description',
     imageUrl: 'imageUrl',
   );
   
-  int id = 1;
+  String id = '1';
   group(
     'remote data source must return the model',
     () {
@@ -41,7 +41,7 @@ void main() {
             mockHttpClient.get(Uri.parse(Urls.getByUrl(id)))
           ).thenAnswer(
             (_) async => http.Response (
-              readJson('helper/dummy_data/json_respond_data.json'),200
+              readJson('helper/dummy_data/remote_single.json'),200
             )
           );
 
@@ -74,11 +74,11 @@ void main() {
             mockHttpClient.get(Uri.parse(Urls.getAll()))
           ).thenAnswer(
             (_) async => http.Response (
-              readJson('helper/dummy_data/all_data.json'),200
+              readJson('helper/dummy_data/remote_json.json'),200
             )
           );
 
-          final result = await ecommerceRemoteDataSourceImpl.getAllProduct();
+          final result = await ecommerceRemoteDataSourceImpl.getAllProducts();
 
           expect(result, isA<List<EcommerceModel>>());
         });   

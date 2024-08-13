@@ -11,11 +11,11 @@ import '../../helper/dummy_data/read_json.dart';
 
 void main() {
   const EcommerceModel model = EcommerceModel(
-    id: 1,
-    name: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
-    description: 'Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday',
-    imageUrl: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
-    price: 109.95
+    id: '6672776eb905525c145fe0bb',
+    name: 'Anime website',
+    description: 'Explore anime characters.',
+    imageUrl: 'https://res.cloudinary.com/g5-mobile-track/image/upload/v1718777711/images/clmxnecvavxfvrz9by4w.jpg',
+    price: 123
   );
 
   test(
@@ -33,7 +33,7 @@ void main() {
       final dynamic jsonData = json.decode(
         readJson('helper/dummy_data/json_respond_data.json')
       );
-      final result = EcommerceModel.fromJson(jsonData);
+      final result = EcommerceModel.fromJson(jsonData['data']);
       expect(result, equals(model));
     
     });
@@ -43,11 +43,11 @@ void main() {
      () async {
       final result = model.toJson();
       final Map<String,dynamic> expectedJson = {
-        'id': 1,
-        'name': 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
-        'description': 'Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday',
-        'imageUrl': 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
-        'price': 109.95
+        'id': '6672776eb905525c145fe0bb',
+        'name': 'Anime website',
+        'description': 'Explore anime characters.',
+        'imageUrl': 'https://res.cloudinary.com/g5-mobile-track/image/upload/v1718777711/images/clmxnecvavxfvrz9by4w.jpg',
+        'price': 123
       };
       expect(expectedJson, equals(result));
      }

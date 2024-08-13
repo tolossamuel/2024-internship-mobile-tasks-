@@ -1,11 +1,13 @@
 
 
+import 'dart:convert';
 import 'dart:core';
 
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../core/Error/failure.dart';
+import '../../Data/model/ecommerce_model.dart';
 import '../entity/ecommerce_entity.dart';
 import '../repositories/ecommerce_repositories.dart';
 
@@ -22,25 +24,29 @@ class EcommerceUsecase extends Equatable {
     }
 
     // get data by id
-    Future<Either<Failure,EcommerceEntity>> dataById(int id) {
+    Future<Either<Failure,EcommerceEntity>> dataById(String id) {
       return repositories.getProductById(id);
     }
 
     // edit the product
-    Future<Either<Failure,bool>> editProduct(int id, EcommerceEntity data){
-      final result = data.toModel();
-      return repositories.editeProduct(id,result);
+    Future<Either<Failure,bool>> editProduct(String id, String jsonString){
+    
+      final datas = json.decode(jsonString);
+    
+      final EcommerceModel ecommerceModel = EcommerceModel.fromJson(datas['data']);
+      return repositories.editeProduct(id,ecommerceModel);
     }
 
     // delte product 
-    Future<Either<Failure,bool>> deleteProduct(int id){
+    Future<Either<Failure,bool>> deleteProduct(String id){
       return repositories.deleteProduct(id);
     }
 
     // add new product 
-    Future<Either<Failure,bool>> addProducts(EcommerceEntity entity ){
-      
-      return repositories.addProduct(entity);
+    Future<Either<Failure,bool>> addProducts(String jsonString ){
+      final data = json.decode(jsonString);
+      final EcommerceModel ecommerceModel = EcommerceModel.fromJson(data['data']);
+      return repositories.addProduct(ecommerceModel);
     }
 
     @override

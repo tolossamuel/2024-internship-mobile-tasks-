@@ -159,7 +159,7 @@ class MockEcommerceRepositories extends _i1.Mock
 
   @override
   _i8.Future<_i2.Either<_i9.Failure, _i10.EcommerceEntity>> getProductById(
-          int? id) =>
+          String? id) =>
       (super.noSuchMethod(
         Invocation.method(
           #getProductById,
@@ -214,7 +214,7 @@ class MockEcommerceRepositories extends _i1.Mock
 
   @override
   _i8.Future<_i2.Either<_i9.Failure, bool>> editeProduct(
-    int? id,
+    String? id,
     _i4.EcommerceModel? data,
   ) =>
       (super.noSuchMethod(
@@ -239,7 +239,7 @@ class MockEcommerceRepositories extends _i1.Mock
       ) as _i8.Future<_i2.Either<_i9.Failure, bool>>);
 
   @override
-  _i8.Future<_i2.Either<_i9.Failure, bool>> deleteProduct(int? id) =>
+  _i8.Future<_i2.Either<_i9.Failure, bool>> deleteProduct(String? id) =>
       (super.noSuchMethod(
         Invocation.method(
           #deleteProduct,
@@ -275,7 +275,7 @@ class MockEcommerceRemoteDataSourceImpl extends _i1.Mock
       ) as _i3.Client);
 
   @override
-  _i8.Future<_i4.EcommerceModel> getProduct(int? id) => (super.noSuchMethod(
+  _i8.Future<_i4.EcommerceModel> getProduct(String? id) => (super.noSuchMethod(
         Invocation.method(
           #getProduct,
           [id],
@@ -290,9 +290,9 @@ class MockEcommerceRemoteDataSourceImpl extends _i1.Mock
       ) as _i8.Future<_i4.EcommerceModel>);
 
   @override
-  _i8.Future<List<_i4.EcommerceModel>> getAllProduct() => (super.noSuchMethod(
+  _i8.Future<List<_i4.EcommerceModel>> getAllProducts() => (super.noSuchMethod(
         Invocation.method(
-          #getAllProduct,
+          #getAllProducts,
           [],
         ),
         returnValue:
@@ -300,7 +300,7 @@ class MockEcommerceRemoteDataSourceImpl extends _i1.Mock
       ) as _i8.Future<List<_i4.EcommerceModel>>);
 
   @override
-  _i8.Future<bool> deleteProduct(int? id) => (super.noSuchMethod(
+  _i8.Future<bool> deleteProduct(String? id) => (super.noSuchMethod(
         Invocation.method(
           #deleteProduct,
           [id],
@@ -310,7 +310,7 @@ class MockEcommerceRemoteDataSourceImpl extends _i1.Mock
 
   @override
   _i8.Future<bool> editProduct(
-    int? id,
+    String? id,
     _i4.EcommerceModel? model,
   ) =>
       (super.noSuchMethod(
@@ -662,7 +662,7 @@ class MockLocalDataSourceImpl extends _i1.Mock
       ) as _i8.Future<List<_i4.EcommerceModel>>);
 
   @override
-  _i8.Future<_i4.EcommerceModel> getSingleProduct(int? num) =>
+  _i8.Future<_i4.EcommerceModel> getSingleProduct(String? num) =>
       (super.noSuchMethod(
         Invocation.method(
           #getSingleProduct,
@@ -687,7 +687,7 @@ class MockLocalDataSourceImpl extends _i1.Mock
       ) as _i8.Future<bool>);
 
   @override
-  _i8.Future<bool> deleteCach(int? id) => (super.noSuchMethod(
+  _i8.Future<bool> deleteCach(String? id) => (super.noSuchMethod(
         Invocation.method(
           #deleteCach,
           [id],
@@ -738,7 +738,8 @@ class MockEcommerceUsecase extends _i1.Mock implements _i14.EcommerceUsecase {
           ) as _i8.Future<_i2.Either<_i9.Failure, List<_i10.EcommerceEntity>>>);
 
   @override
-  _i8.Future<_i2.Either<_i9.Failure, _i10.EcommerceEntity>> dataById(int? id) =>
+  _i8.Future<_i2.Either<_i9.Failure, _i10.EcommerceEntity>> dataById(
+          String? id) =>
       (super.noSuchMethod(
         Invocation.method(
           #dataById,
@@ -757,15 +758,15 @@ class MockEcommerceUsecase extends _i1.Mock implements _i14.EcommerceUsecase {
 
   @override
   _i8.Future<_i2.Either<_i9.Failure, bool>> editProduct(
-    int? id,
-    _i10.EcommerceEntity? data,
+    String? id,
+    String? jsonString,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
           #editProduct,
           [
             id,
-            data,
+            jsonString,
           ],
         ),
         returnValue: _i8.Future<_i2.Either<_i9.Failure, bool>>.value(
@@ -775,14 +776,14 @@ class MockEcommerceUsecase extends _i1.Mock implements _i14.EcommerceUsecase {
             #editProduct,
             [
               id,
-              data,
+              jsonString,
             ],
           ),
         )),
       ) as _i8.Future<_i2.Either<_i9.Failure, bool>>);
 
   @override
-  _i8.Future<_i2.Either<_i9.Failure, bool>> deleteProduct(int? id) =>
+  _i8.Future<_i2.Either<_i9.Failure, bool>> deleteProduct(String? id) =>
       (super.noSuchMethod(
         Invocation.method(
           #deleteProduct,
@@ -799,19 +800,18 @@ class MockEcommerceUsecase extends _i1.Mock implements _i14.EcommerceUsecase {
       ) as _i8.Future<_i2.Either<_i9.Failure, bool>>);
 
   @override
-  _i8.Future<_i2.Either<_i9.Failure, bool>> addProducts(
-          _i10.EcommerceEntity? entity) =>
+  _i8.Future<_i2.Either<_i9.Failure, bool>> addProducts(String? jsonString) =>
       (super.noSuchMethod(
         Invocation.method(
           #addProducts,
-          [entity],
+          [jsonString],
         ),
         returnValue: _i8.Future<_i2.Either<_i9.Failure, bool>>.value(
             _FakeEither_0<_i9.Failure, bool>(
           this,
           Invocation.method(
             #addProducts,
-            [entity],
+            [jsonString],
           ),
         )),
       ) as _i8.Future<_i2.Either<_i9.Failure, bool>>);
