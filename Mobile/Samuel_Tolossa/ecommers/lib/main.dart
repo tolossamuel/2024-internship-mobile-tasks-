@@ -1,11 +1,14 @@
 // import 'package:ecommers/Features/AddProduct/Presentation/UI/addProduct.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'features/ecommerce/presentation/UI/add_product/add_product.dart';
 import 'features/ecommerce/presentation/UI/home/Product_detail/detail_page.dart';
 import 'features/ecommerce/presentation/UI/home/home.dart';
 import 'features/ecommerce/presentation/UI/seachProduct/search_screen.dart';
+import 'features/ecommerce/presentation/state/input_button_activation/button_bloc.dart';
+import 'features/ecommerce/presentation/state/image_input_display/image_bloc.dart';
 import 'features/ecommerce/presentation/state/product_bloc/product_bloc.dart';
 import 'injection.dart' as di;
 
@@ -19,8 +22,19 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => di.locator<ProductBloc>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ProductBloc>(
+          create: (context) => di.locator<ProductBloc>(),
+        ),
+        BlocProvider<ImageBloc>(
+          create: (context) => di.locator<ImageBloc>(),
+        ),
+        BlocProvider<ButtonBloc>(
+          create: (context) => di.locator<ButtonBloc>(),
+        ),
+        // Add more BlocProviders here if needed
+      ],
       child: MaterialApp(
         title: 'Ecommers',
         initialRoute: '/',
@@ -36,6 +50,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         home: const HomeScreen(),
+        builder: EasyLoading.init(),
       ),
     );
   }

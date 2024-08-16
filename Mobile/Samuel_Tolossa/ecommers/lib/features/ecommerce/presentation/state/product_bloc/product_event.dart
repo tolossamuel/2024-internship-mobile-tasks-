@@ -1,4 +1,5 @@
 
+
 import 'package:equatable/equatable.dart';
 abstract class ProductEvent  extends Equatable{
   const ProductEvent ();
@@ -44,15 +45,9 @@ class CreateProductEvent extends ProductEvent {
 }
 
 
-class UpdateProductEvent extends ProductEvent {
-  final String ecommerceEntity;
-  final String id;
-  const UpdateProductEvent({
-    required this.ecommerceEntity,
-    required this.id
-  });
-  @override
-  List<Object ?> get props => [ecommerceEntity,id];
-}
+
+
+
+
 
 

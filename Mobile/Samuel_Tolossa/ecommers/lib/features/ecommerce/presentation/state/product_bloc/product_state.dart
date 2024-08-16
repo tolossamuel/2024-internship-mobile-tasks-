@@ -12,7 +12,7 @@ abstract class ProductState extends Equatable{
   List<Object ?> get props => [];
 }
 
-class IntialState extends ProductState {}
+class ProductIntialState extends ProductState {}
 
 class LoadedSingleProductState extends ProductState {
   final EcommerceEntity product;
@@ -62,29 +62,20 @@ class SuccessAdd extends ProductState {
   List<Object?> get props => [add];
 }
 
-class SuccessEdit extends ProductState {
-  final bool edited;
-
-  SuccessEdit ({
-    required this.edited
-  });
-
-  @override
-
-  List<Object?> get props => [edited];
-}
 
 
-class ErrorState extends ProductState {
+class ProductErrorState extends ProductState {
   final String messages;
 
-  ErrorState ({
+  ProductErrorState ({
     required this.messages
   });
 
   @override
   List<Object ?> get props => [messages];
 }
+
+
 
 
 class LoadingState extends ProductState {}

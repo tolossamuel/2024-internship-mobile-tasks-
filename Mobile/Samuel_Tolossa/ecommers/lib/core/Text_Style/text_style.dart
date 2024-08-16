@@ -21,6 +21,7 @@ class TextStyles extends StatelessWidget {
     return Text(
       text,
       overflow: TextOverflow.ellipsis,
+    
       style: TextStyle(
         color: fontColor,
         fontSize: fontSizes.toDouble(),

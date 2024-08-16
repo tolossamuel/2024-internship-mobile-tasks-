@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/Colors/colors.dart';
+import '../../../../../core/const/width_height.dart';
 
 class ApplyFilter extends StatelessWidget {
 
@@ -13,9 +14,11 @@ class ApplyFilter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = WidthHeight.screenWidth(context);
+    double height = WidthHeight.screenHeight(context);
     return Container(
-              width: 366,
-              height: 50,
+              width: 0.85*width,
+              height: height*0.053,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color : mainColor,

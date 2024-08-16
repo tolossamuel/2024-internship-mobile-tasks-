@@ -1,13 +1,10 @@
 
-
-import 'dart:convert';
 import 'dart:core';
 
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../core/Error/failure.dart';
-import '../../Data/model/ecommerce_model.dart';
 import '../entity/ecommerce_entity.dart';
 import '../repositories/ecommerce_repositories.dart';
 
@@ -29,12 +26,8 @@ class EcommerceUsecase extends Equatable {
     }
 
     // edit the product
-    Future<Either<Failure,bool>> editProduct(String id, String jsonString){
-    
-      final datas = json.decode(jsonString);
-    
-      final EcommerceModel ecommerceModel = EcommerceModel.fromJson(datas['data']);
-      return repositories.editeProduct(id,ecommerceModel);
+    Future<Either<Failure,bool>> editProduct(String id, Map<String,dynamic> jsonString ){
+       return repositories.editeProduct(id, jsonString);
     }
 
     // delte product 
@@ -43,10 +36,13 @@ class EcommerceUsecase extends Equatable {
     }
 
     // add new product 
-    Future<Either<Failure,bool>> addProducts(String jsonString ){
-      final data = json.decode(jsonString);
-      final EcommerceModel ecommerceModel = EcommerceModel.fromJson(data['data']);
-      return repositories.addProduct(ecommerceModel);
+    Future<Either<Failure,bool>> addProducts(Map<String,dynamic> jsonString ){
+
+      return repositories.addProduct(jsonString);
+    }
+
+    Future<Either<Failure, Map<String,dynamic>>> selectImage(){
+      return repositories.selectImage();
     }
 
     @override

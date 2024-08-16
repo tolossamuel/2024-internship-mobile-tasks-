@@ -1,7 +1,6 @@
 
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../Domain/usecase/ecommerce_usecase.dart';
 import 'product_event.dart';
 import 'product_state.dart';
@@ -11,8 +10,9 @@ class ProductBloc  extends Bloc<ProductEvent,ProductState>{
 
   ProductBloc ({
     required this.ecommerceUsecase
-  }):super(IntialState()){
+  }):super(ProductIntialState()){
     // on<On
+    
 
     on<GetSingleProductEvent>(
       (event,emit) async{
@@ -22,7 +22,7 @@ class ProductBloc  extends Bloc<ProductEvent,ProductState>{
         result.fold(
           (failure){
             
-            emit(ErrorState(messages: 'try again'));
+            emit(ProductErrorState(messages: 'try again'));
           },
           (data) {
             emit(LoadedSingleProductState(product: data));
@@ -40,7 +40,7 @@ class ProductBloc  extends Bloc<ProductEvent,ProductState>{
         result.fold(
           (failure){
             
-            emit(ErrorState(messages: 'try again'));
+            emit(ProductErrorState(messages: 'try again'));
           },
           (data) {
             emit(LoadedAllProductState(products: data));
@@ -49,27 +49,14 @@ class ProductBloc  extends Bloc<ProductEvent,ProductState>{
 
       }
     );
-    on<CreateProductEvent>(
-      (event,emit) async {
-        emit(LoadingState());
-        final result = await ecommerceUsecase.addProducts(event.ecommerceEntity);
-        result.fold(
-          (failure){
-            emit(ErrorState(messages: 'try again'));
-          }, 
-          (data) {
-            emit(SuccessAdd(add: data));
-          }
-        );
-      }
-    );
+
     on<DeleteProductEvent>(
       (event,emit) async {
         emit(LoadingState());
         final result = await ecommerceUsecase.deleteProduct(event.id);
         result.fold(
           (failure){
-            emit(ErrorState(messages: 'try again'));
+            emit(ProductErrorState(messages: 'try again'));
           }, 
           (data) {
             emit(SuccessDelete(deleted: data));
@@ -80,21 +67,8 @@ class ProductBloc  extends Bloc<ProductEvent,ProductState>{
       
     );
 
-    on<UpdateProductEvent>(
-      (event,emit) async {
-        emit(LoadingState());
-        final result = await ecommerceUsecase.editProduct(event.id,event.ecommerceEntity);
-        result.fold(
-          (failure){
-            emit(ErrorState(messages: 'try again'));
-          }, 
-          (data) {
-            emit(SuccessEdit(edited: data));
-          }
-        );
-      }
-    );
     
-  }
 
+
+}
 }

@@ -10,7 +10,7 @@ class IinputBorder extends StatelessWidget {
   final String text;
   final int width;
   final String placeHolder;
-
+  final Map<String,dynamic> data;
   const IinputBorder({
     super.key,
     
@@ -19,12 +19,13 @@ class IinputBorder extends StatelessWidget {
     required this.text,
     required this.width,
     required this.placeHolder,
+    required this.data,
 
   });
 
   @override
   Widget build(BuildContext context) {
-  
+
     return Container(
               width: width.toDouble(),
               height: hight.toDouble(),
@@ -43,7 +44,12 @@ class IinputBorder extends StatelessWidget {
                       const SizedBox(height: 15),
                       const Text('upload image'),
                     ] else ...[
-                      InputField(text:text,placeHolder:placeHolder,),
+                      InputField(
+                        text:text,
+                        placeHolder:placeHolder,
+                        data: data,
+                        
+                        ),
                     ]
                   ],
                 ),

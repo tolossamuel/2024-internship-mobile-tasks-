@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../../core/const/width_height.dart';
+
 class SizeOfProduct extends StatelessWidget {
   const SizeOfProduct({super.key});
 
   @override
   Widget build(BuildContext context) {
     List<int> size = [39, 40, 41, 42, 43, 44, 45];
-
+    double width = WidthHeight.screenWidth(context);
+    double height = WidthHeight.screenHeight(context);
     return SizedBox(
       height: 60, // Fixed height for the ListView
       child: ListView.builder(
@@ -17,8 +20,8 @@ class SizeOfProduct extends StatelessWidget {
           return Container(
             alignment: Alignment.center,
             margin: const EdgeInsets.all(5),
-            width: 50,
-            height: 50,
+            width: width*0.116,
+            height: height*0.0626,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: current != 41 ? Colors.white : Colors.blue,

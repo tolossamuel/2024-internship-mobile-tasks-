@@ -5,6 +5,9 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ecommers/core/Error/failure.dart';
 import 'package:ecommers/features/ecommerce/Domain/entity/ecommerce_entity.dart';
+import 'package:ecommers/features/ecommerce/presentation/state/input_button_activation/bottum_state.dart';
+import 'package:ecommers/features/ecommerce/presentation/state/input_button_activation/button_bloc.dart';
+import 'package:ecommers/features/ecommerce/presentation/state/input_button_activation/button_event.dart';
 import 'package:ecommers/features/ecommerce/presentation/state/product_bloc/product_bloc.dart';
 import 'package:ecommers/features/ecommerce/presentation/state/product_bloc/product_event.dart';
 import 'package:ecommers/features/ecommerce/presentation/state/product_bloc/product_state.dart';
@@ -16,20 +19,22 @@ import '../../helper/test_hlper.mocks.dart';
 void main() {
   late MockEcommerceUsecase mockEcommerceUsecase;
   late ProductBloc productBloc;
+  late ButtonBloc buttonBloc;
 
   setUp(() {
     mockEcommerceUsecase = MockEcommerceUsecase();
     productBloc = ProductBloc(ecommerceUsecase: mockEcommerceUsecase);
+    buttonBloc = ButtonBloc(ecommerceUsecase: mockEcommerceUsecase);
   });
 
 
   test(
     'test the inisial state of the app',
     () {
-      expect(productBloc.state, IntialState());
+      expect(productBloc.state, ProductIntialState());
     }
     );
-  Map data = {'id': '1', 'name': 'pc', 'description': 'hp', 'imageUrl': 'http', 'price': 2222.2};
+ 
 
   final EcommerceEntity ecommerceEntity = const EcommerceEntity(
     id: '1', 
@@ -80,7 +85,7 @@ void main() {
         act: (bloc) => bloc.add(const GetSingleProductEvent(id: '1')),
           expect: () => [
             LoadingState(),
-            ErrorState(messages: 'try again'),
+            ProductErrorState(messages: 'try again'),
             
           ],
       );
@@ -113,42 +118,14 @@ void main() {
         act: (bloc) => bloc.add(const LoadAllProductEvent()),
           expect: () => [
             LoadingState(),
-            ErrorState(messages: 'try again'),
+            ProductErrorState(messages: 'try again'),
             
           ],
       );
 
-      blocTest<ProductBloc, ProductState>(
-        'emits [MyState] when add new  product return  success fully.',
-        build: (){
-          when(
-            mockEcommerceUsecase.addProducts(any)
-          ).thenAnswer((_) async => const Right(true));
-          return productBloc;
-        },
-        act: (bloc) => bloc.add(CreateProductEvent(ecommerceEntity: data.toString())),
-          expect: () => [
-            LoadingState(),
-            SuccessAdd(add:true),
-            
-          ],
-      );
+    
 
-      blocTest<ProductBloc, ProductState>(
-        'emits [MyState] when add new product must return failure.',
-        build: (){
-          when(
-            mockEcommerceUsecase.addProducts(any)
-          ).thenAnswer((_) async => const Left(ConnectionFailur(message: 'try again')));
-          return productBloc;
-        },
-        act: (bloc) => bloc.add(CreateProductEvent(ecommerceEntity: data.toString())),
-          expect: () => [
-            LoadingState(),
-            ErrorState(messages: 'try again'),
-            
-          ],
-      );
+    
 
 
       blocTest<ProductBloc, ProductState>(
@@ -178,47 +155,80 @@ void main() {
         act: (bloc) => bloc.add(const DeleteProductEvent(id: '1')),
           expect: () => [
             LoadingState(),
-            ErrorState(messages: 'try again'),
+            ProductErrorState(messages: 'try again'),
             
           ],
       );
 
 
-      blocTest<ProductBloc, ProductState>(
+      blocTest<ButtonBloc, BottumState>(
         'emits [MyState] when edit  a product must return  success.',
         build: (){
           when(
-            mockEcommerceUsecase.editProduct(any,any)
+            mockEcommerceUsecase.editProduct(any,any),
           ).thenAnswer((_) async => const Right(true));
-          return productBloc;
+       
+          return buttonBloc;
         },
-        act: (bloc) => bloc.add( UpdateProductEvent(id: '1',ecommerceEntity:data.toString())),
+        act: (bloc) => bloc.add( UpdateProductEvent()),
+        
           expect: () => [
-            LoadingState(),
-            SuccessEdit(edited:true),
+            AddLoadingState(),
+            SuccessAddProduct(add:true),
             
           ],
       );
 
-      blocTest<ProductBloc, ProductState>(
-        'emits [MyState] when edit  a product must return failure.',
+      blocTest<ButtonBloc, BottumState>(
+        'emits [MyState] when edit  a product must return  failure.',
         build: (){
           when(
             mockEcommerceUsecase.editProduct(any,any)
-          ).thenAnswer((_) async => const Left(ConnectionFailur(message: 'try again')));
-          return productBloc;
+          ).thenAnswer((_) async => const Left(ServerFailure(message: 'try again')));
+          return buttonBloc;
         },
-        act: (bloc) => bloc.add(UpdateProductEvent(id: '1',ecommerceEntity: data.toString())),
+        act: (bloc) => bloc.add( UpdateProductEvent()),
           expect: () => [
-            LoadingState(),
-            ErrorState(messages: 'try again'),
+            AddLoadingState(),
+            AddErrorState(messages: 'try again'),
+            
+          ],
+      );
+
+      blocTest<ButtonBloc, BottumState>(
+        'emits [MyState] when add  a product must return  success.',
+        build: (){
+          when(
+            mockEcommerceUsecase.addProducts(any),
+          ).thenAnswer((_) async => const Right(true));
+       
+          return buttonBloc;
+        },
+        act: (bloc) => bloc.add( AddProductEvent()),
+        
+          expect: () => [
+            AddLoadingState(),
+            SuccessAddProduct(add:true),
+            
+          ],
+      );
+
+      blocTest<ButtonBloc, BottumState>(
+        'emits [MyState] when edit  a product must return  failure.',
+        build: (){
+          when(
+            mockEcommerceUsecase.addProducts(any)
+          ).thenAnswer((_) async => const Left(ServerFailure(message: 'try again')));
+          return buttonBloc;
+        },
+        act: (bloc) => bloc.add( AddProductEvent()),
+          expect: () => [
+            AddLoadingState(),
+            
+            AddErrorState(messages: 'try again'),
             
           ],
       );
     }
-    );
-
-  
-
- 
+    ); 
 }

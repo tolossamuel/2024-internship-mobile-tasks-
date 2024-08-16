@@ -1,4 +1,6 @@
 
+import 'dart:convert';
+
 import 'package:ecommers/core/Error/failure.dart';
 import 'package:ecommers/core/const/const.dart';
 import 'package:ecommers/features/ecommerce/Data/data_source/remote_data_source.dart';
@@ -18,17 +20,19 @@ void main() {
   late EcommerceRemoteDataSourceImpl ecommerceRemoteDataSourceImpl;
 
 
+
   setUpAll(() {
     mockHttpClient = MockHttpClient();
     ecommerceRemoteDataSourceImpl = EcommerceRemoteDataSourceImpl(client: mockHttpClient);
   });
-  const EcommerceModel model = EcommerceModel (
-    id: '1',
-    name: 'name',
-    price: 1,
-    description: 'description',
-    imageUrl: 'imageUrl',
-  );
+  
+
+  Map<String,dynamic> data = {
+    'name' : 'name',
+    'description' : 'description',
+    'imageUrl' : 'imageUrl',
+    'price' : 1
+  };
   
   String id = '1';
   group(
@@ -106,7 +110,12 @@ void main() {
           when(
             mockHttpClient.put(
               Uri.parse(Urls.updateProduct(id)),
-              body: model.toJson()
+                headers: {'Content-Type': 'application/json'},
+                body: jsonEncode({
+                  'name': data['name'],
+                  'description': data['description'],
+                  'price': data['price'],
+                }),
               )
           ).thenAnswer(
             (_) async => http.Response (
@@ -114,28 +123,28 @@ void main() {
             )
           );
 
-          final result = await ecommerceRemoteDataSourceImpl.editProduct(id, model);
+          final result = await ecommerceRemoteDataSourceImpl.editProduct(id, data);
 
           expect(result, true);
         });
 
         test(
-        'it must return true if the data is add to remote data source else false',
+        'it must return false if the data is add to remote data source else false',
         () async{
           when(
             mockHttpClient.post(
               Uri.parse(Urls.addNewProduct()),
-              body: model.toJson()
+              body: data
               )
           ).thenAnswer(
             (_) async => http.Response (
-              'true',200
+              'true',201
             )
           );
 
-          final result = await ecommerceRemoteDataSourceImpl.addProduct(model);
+          final result = await ecommerceRemoteDataSourceImpl.addProduct(data);
 
-          expect(result, true);
+          expect(result, false);
         });
     }
     

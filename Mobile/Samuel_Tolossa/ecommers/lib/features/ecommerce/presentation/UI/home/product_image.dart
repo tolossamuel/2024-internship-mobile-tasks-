@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/Text_Style/text_style.dart';
+import '../../../../../core/const/width_height.dart';
 
 class ProductImage extends StatelessWidget {
   final String imageUrl;
@@ -20,8 +21,7 @@ class ProductImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int titles = 20 < title.length ? 20 : title.length;
-    int discription = 30 < disc.length ? 30 : disc.length;
+    double width = WidthHeight.screenWidth(context);
       return  GestureDetector(
         onTap: () => {
           Navigator.pushNamed(
@@ -37,27 +37,38 @@ class ProductImage extends StatelessWidget {
             image: imageUrl,
             fit: BoxFit.fitWidth,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              TextStyles(text: '${title.substring(0,titles)}...', fontColor: Colors.black,fontWeight: FontWeight.w500, fontSizes: 20),
-              TextStyles(text: '\$$price', fontColor: Colors.black, fontSizes: 14),
-            ],
+          Padding(
+            padding: const EdgeInsets.only(left:10.0,right: 10),
+            child: Row(
+              
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(width:width*0.418, child:TextStyles(text: '${title}', fontColor: Colors.black,fontWeight: FontWeight.w500, fontSizes: (width*0.04).toInt())),
+                SizedBox(width: width * 0.15,child: Align(alignment:Alignment.centerRight,child: TextStyles(text: '\$$price', fontColor: Colors.black, fontSizes: 14))),
+              ],
+            ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 25.0, right: 25,bottom: 30),
+            padding: const EdgeInsets.only(left: 10.0, right: 10,bottom: 30),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              
               children: [
                 
-                TextStyles(text: '${disc.substring(0,discription)}...', fontColor: Colors.grey, fontSizes: 12),
+                SizedBox(width:width*0.65,child: TextStyles(text: '$disc', fontColor: Colors.grey, fontSizes: (width*0.03).toInt())),
                 const Spacer(),
                 const Icon(Icons.star, color: Colors.yellow, size: 15),
                 
-                TextStyles(
-                  text: '(4.0)',
-                  fontColor: Colors.grey,
-                  fontSizes: 12,
+                SizedBox(
+                  
+                  child: Align(
+                    alignment:Alignment.centerRight,
+                    child: TextStyles(
+                      text: '(4.0)',
+                      fontColor: Colors.grey,
+                      fontSizes: 12,
+                    ),
+                  ),
                 )
               ],
             ),

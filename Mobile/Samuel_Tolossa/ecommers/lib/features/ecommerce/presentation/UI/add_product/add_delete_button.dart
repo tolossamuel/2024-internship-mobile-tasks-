@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../../../../../core/const/width_height.dart';
+
 class AddDeleteButton extends StatelessWidget {
   final Color color;
   final String text;
@@ -15,9 +17,11 @@ class AddDeleteButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = WidthHeight.screenWidth(context);
+    double height = WidthHeight.screenHeight(context);
     return Container(
-              width: 366,
-              height: 50,
+              width: width*0.85,
+              height: 0.053*height,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color : color,

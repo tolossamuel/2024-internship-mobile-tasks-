@@ -29,6 +29,13 @@ void main() {
   ];
   
 
+  Map<String,dynamic> datasJson = {
+    'name' : 'name',
+    'description' : 'description',
+    'imageUrl' : 'imageUrl',
+    'price' : 1
+  };
+
   
   test(
     'should return detail repository of current data',
@@ -40,17 +47,14 @@ void main() {
       expect(result, const Right(productData));
     },
   );
-  String  datas =  '''
-  {
-    "data": {
-      "id": "6672776eb905525c145fe0bb",
-      "name": "Anime website",
-      "description": "Explore anime characters.",
-      "price": 123,
-      "imageUrl": "https://res.cloudinary.com/g5-mobile-track/image/upload/v1718777711/images/clmxnecvavxfvrz9by4w.jpg"
-    }
-  }
-  ''';
+  Map<String,dynamic>  datas = 
+ {
+      'id': '6672776eb905525c145fe0bb',
+      'name': 'Anime website',
+      'description': 'Explore anime characters.',
+      'price': 123,
+     
+  };
   const EcommerceEntity singleProduct = EcommerceEntity(id: '1', name: 'pc', description: 'hp', imageUrl: 'http', price: 2222.2);
   String id = '1';
   test(
@@ -92,7 +96,7 @@ void main() {
       
       when(repositories.addProduct(any)).thenAnswer((_) async => const Right(true));
       
-      final result = await usecase.addProducts(datas);
+      final result = await usecase.addProducts(datasJson);
 
       expect(result, const Right(true));
     },

@@ -34,7 +34,6 @@ class EcommerceModel extends EcommerceEntity {
     return products;
   }
   Map<String,dynamic> toJson() => {
-    'id' : id,
     'name' : name,
     'description' : description,
     'imageUrl' : imageUrl,

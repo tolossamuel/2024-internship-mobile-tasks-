@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
 import '../../../../core/Error/failure.dart';
 import '../../../../core/const/const.dart';
 import '../model/ecommerce_model.dart';
@@ -14,13 +15,13 @@ abstract class EcommerceRemoteDataSource {
   Future<List<EcommerceModel>> getAllProducts();
 
   /// Edits a product identified by its [id] with the provided [model].
-  Future<bool> editProduct(String id, EcommerceModel model);
+  Future<bool> editProduct(String id, Map<String,dynamic> data);
 
   /// Deletes a product identified by its [id].
   Future<bool> deleteProduct(String id);
 
   /// Adds a new product with the provided [data].
-  Future<bool> addProduct(EcommerceModel data);
+  Future<bool> addProduct(Map<String,dynamic> data);
 }
 
 /// Implementation of the [EcommerceRemoteDataSource] interface.
@@ -80,29 +81,55 @@ class EcommerceRemoteDataSourceImpl implements EcommerceRemoteDataSource {
   }
   
   @override
-  Future<bool> editProduct(String id, EcommerceModel model) async {
-    // update by put method also it take updated value
-    final response = await client.put(
-      Uri.parse(Urls.updateProduct(id)),
-      body: model.toJson(),
-    );
-    if (response.statusCode == 200) {
-      return Future.value(true);
-    } else {
-      return Future.value(false);
-    }
+  Future<bool> editProduct(String id, Map<String, dynamic> data) async {
+  final response = await client.put(
+    Uri.parse(Urls.updateProduct(id)),
+    headers: {'Content-Type': 'application/json'},
+    body: jsonEncode({
+      'name': data['name'],
+      'description': data['description'],
+      'price': data['price'],
+    }),
+  );  // Log the response body for detailed error messages
+
+  if (response.statusCode == 200) {
+    return Future.value(true);
+  } else {
+    return Future.value(false);
   }
+}
   
-  @override
-  Future<bool> addProduct(EcommerceModel data) async {
-    final response = await client.post(
-      Uri.parse(Urls.addNewProduct()),
-      body: data.toJson(),
-    );
-    if (response.statusCode == 200) {
+ Future<bool> addProduct(Map<String, dynamic> data) async {
+  try {
+    // Debugging output
+   
+    
+   
+    
+    var request = http.MultipartRequest('POST', Uri.parse(Urls.addNewProduct()))
+      ..fields['name'] = data['name']
+      ..fields['price'] = data['price']
+      ..fields['description'] = data['description']
+      ..files.add(await http.MultipartFile.fromPath(
+        'image', 
+        data['file'].path,
+        contentType: MediaType('image', 'png')));
+    
+  
+    
+    var response = await request.send();
+    
+    // Read the response
+  
+
+    
+    if (response.statusCode == 201) {
       return Future.value(true);
     } else {
       return Future.value(false);
     }
-  }  
+  } catch (e) {
+    return Future.value(false);
+  }
+}
 }

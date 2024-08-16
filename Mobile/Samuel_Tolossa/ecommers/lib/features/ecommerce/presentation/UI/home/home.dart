@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/Colors/colors.dart';
 import '../../../../../core/Text_Style/text_style.dart';
+import '../../../../../core/const/width_height.dart';
 import '../../../../../core/utility/loading_page.dart';
 import '../../state/product_bloc/product_bloc.dart';
 import '../../state/product_bloc/product_event.dart';
@@ -29,6 +30,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
   @override
   Widget build(BuildContext context) {
+    double width = WidthHeight.screenWidth(context);
+    // double height = WidthHeight.screenHeight(context);
     return Scaffold(
       body: RefreshIndicator(
         onRefresh: () {
@@ -37,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         child: BlocConsumer<ProductBloc, ProductState>(
           listener: (context, state) {
-            if(state is ErrorState){
+            if(state is ProductErrorState){
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(state.messages))
                 
@@ -65,10 +68,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               TextStyles(
                                 text: 'Available Products',
                                 fontColor: mainText,
-                                fontSizes: 20,
+                                fontSizes: (width * 0.046).toInt(),
                                 fontWeight: FontWeight.w600,
                               ),
                               GestureDetector(
+                                key: const Key('redirectToSerch'),
                                 onTap: () =>
                                     {Navigator.pushNamed(context, '/search')},
                                 child: Container(
@@ -95,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   child: const Icon(
                                     Icons.search,
-                                    size: 30,
+                                    size: 24,
                                     color: Color.fromARGB(255, 226, 225, 225),
                                   ),
                                 ),
@@ -104,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           
                           Expanded(
-                            child: state is LoadedAllProductState?
+                            child: (state is LoadedAllProductState)?
                             ListView.builder(
                               
                               itemCount: state.products.length,
@@ -152,7 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: GestureDetector(
         onTap: () {
           Navigator.pushNamed(context, '/add-product',
-        arguments: {'imageUrl':'','price':0,'name':'','disc':''},);
+        arguments: {'id':'','imageUrl':'','price':0,'name':'','disc':'','type':0},);
         },
         child: Container(
           width: 60,

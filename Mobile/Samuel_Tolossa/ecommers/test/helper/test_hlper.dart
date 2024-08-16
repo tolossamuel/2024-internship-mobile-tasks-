@@ -6,6 +6,9 @@ import 'package:ecommers/features/ecommerce/Data/data_source/local_data_source.d
 import 'package:ecommers/features/ecommerce/Data/data_source/remote_data_source.dart';
 import 'package:ecommers/features/ecommerce/Domain/repositories/ecommerce_repositories.dart';
 import 'package:ecommers/features/ecommerce/Domain/usecase/ecommerce_usecase.dart';
+import 'package:ecommers/features/ecommerce/presentation/state/image_input_display/image_bloc.dart';
+import 'package:ecommers/features/ecommerce/presentation/state/input_button_activation/button_bloc.dart';
+import 'package:ecommers/features/ecommerce/presentation/state/product_bloc/product_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:mockito/annotations.dart';
@@ -21,6 +24,9 @@ import 'package:shared_preferences/shared_preferences.dart';
     SharedPreferences,
     LocalDataSourceImpl,
     EcommerceUsecase,
+    ProductBloc,
+    ImageBloc,
+    ButtonBloc
   
   ],
   customMocks :[MockSpec<http.Client>(as : #MockHttpClient)],

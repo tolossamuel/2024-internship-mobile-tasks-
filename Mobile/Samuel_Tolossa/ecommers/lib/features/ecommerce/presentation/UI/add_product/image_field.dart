@@ -1,5 +1,7 @@
 
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 
@@ -9,6 +11,7 @@ class ImageField extends StatelessWidget {
   final String text;
   final int width;
   final String imageUrl;
+  final File? localImage;
  
   const ImageField({
     super.key,
@@ -18,10 +21,12 @@ class ImageField extends StatelessWidget {
     required this.text,
     required this.width,
     this.imageUrl = '',
+    this.localImage,
   });
 
   @override
   Widget build(BuildContext context) {
+   
     return Container(
               width: width.toDouble(),
               height: hight.toDouble(),
@@ -35,13 +40,23 @@ class ImageField extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
             // Conditionally add widgets based on the 'check' variabl
-            if(imageUrl == '') ...[
+            if(localImage == null) ...[
+                     
+                    if (imageUrl == '') ...[
                       const Icon(Icons.add_photo_alternate_outlined),
+                      
                       const SizedBox(height: 15),
                       const Text('upload image'),
-                  ] else ...[
+                      ] else ...[
+                        
+                      
                       Image.network(imageUrl, height: hight.toDouble(),
                       fit: BoxFit.fitWidth,),
+                      
+                      ] 
+                      
+                  ] else ...[
+                      Image.file(localImage!, height: hight.toDouble()),
                     ]
                   ],
                   

@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../Colors/colors.dart';
 
@@ -11,6 +12,7 @@ class BackIcons extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
               onTap: () => {
+                EasyLoading.dismiss(),
                 Navigator.pop(context),
               },
               child: Container(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../../core/const/width_height.dart';
 import '../../../state/product_bloc/product_bloc.dart';
 import '../../../state/product_bloc/product_event.dart';
 import '../../../state/product_bloc/product_state.dart';
@@ -27,9 +28,11 @@ class DeleteUpdateButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = WidthHeight.screenWidth(context);
+    double height = WidthHeight.screenHeight(context);
     return BlocListener<ProductBloc, ProductState>(
       listener: (context, state) {
-        if (state is ErrorState) {
+        if (state is ProductErrorState) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(state.messages),
@@ -42,6 +45,7 @@ class DeleteUpdateButton extends StatelessWidget {
           return GestureDetector(
             onTap: text != 'DELETE'
                 ? () {
+                 
                     Navigator.pushNamed(
                       context,
                       '/add-product',
@@ -51,6 +55,7 @@ class DeleteUpdateButton extends StatelessWidget {
                         'name': name,
                         'disc': disc,
                         'id': id,
+                        'type' : 1
                       },
                     );
                   }
@@ -67,8 +72,8 @@ class DeleteUpdateButton extends StatelessWidget {
                     }
                   },
             child: Container(
-              width: 140,
-              height: 50,
+              width: width*0.325,
+              height: height*0.053,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: bottonColor,
@@ -99,3 +104,6 @@ class DeleteUpdateButton extends StatelessWidget {
     );
   }
 }
+
+
+

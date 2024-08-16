@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
+import 'package:file_picker/file_picker.dart';
+
 import '../../../../core/Error/failure.dart';
 import '../../../../core/network/check_connectivity.dart';
 import '../../Domain/entity/ecommerce_entity.dart';
@@ -15,14 +19,15 @@ class EcommerceRepoImpl implements EcommerceRepositories  {
   });
 
   @override
-  Future<Either<Failure, bool>> addProduct(EcommerceEntity product) async{
+  Future<Either<Failure, bool>> addProduct(Map<String,dynamic> product) async{
     try {
       final connection = await networkInfo.isConnected;
       if(connection == false){
         return const Left(ConnectionFailur(message: 'connection error'));
       }
-      final data = product.toModel();
-      final result = await remoteDataSource.addProduct(data);
+
+     
+      final result = await remoteDataSource.addProduct(product);
       return Right(result);
     } on ConnectionFailur {
       return const Left(ConnectionFailur(message: 'connection error'));
@@ -44,13 +49,13 @@ class EcommerceRepoImpl implements EcommerceRepositories  {
   }
 
   @override
-  Future<Either<Failure, bool>> editeProduct(String id,EcommerceModel data) async{
+  Future<Either<Failure, bool>> editeProduct(String id,Map<String,dynamic> product) async{
     try {
       final connection = await networkInfo.isConnected;
       if(connection == false){
         return const Left(ConnectionFailur(message: 'connection error'));
       }
-      final result = await remoteDataSource.editProduct(id,data);
+      final result = await remoteDataSource.editProduct(id,product);
       return Right(result);
     } on ConnectionFailur {
       return const Left(ConnectionFailur(message: 'connection error'));
@@ -90,6 +95,34 @@ class EcommerceRepoImpl implements EcommerceRepositories  {
       return const Left(ConnectionFailur(message: 'Connection Error'));
     }
   }
+
+  @override
+  Future<Either<Failure, Map<String,dynamic>>> selectImage() async{
+    try {
+  
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.image, // Restrict to image files
+    );
+    if (result == null || result.files.isEmpty) {
+      return const Left(ServerFailure(message: 'try again'));
+    }
+    final filePath = result.files.single.path;
+
+    if (filePath == null) {
+      return const Left(ServerFailure(message: 'try again'));
+    }
+    final Map<String,dynamic> data = {
+      'image': filePath,
+      'file': File(filePath)
+    };
+    return Right(data);
+  } catch (e) {
+    
+    return Left(ServerFailure(message: e.toString()));
+  }
+  }
+
+
   
   
   
