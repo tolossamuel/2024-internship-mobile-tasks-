@@ -47,7 +47,7 @@ Utilize Flutter widgets and components to build the UI:
 * ![Alt text](images/registration3.png)
 * ![Alt text](images/registration4.png)
 * ![Alt text](images/registration7.png)
-* ![Alt text](relative/path/to/your/image.png)
+* ![Alt text](images/images/registration5.png)
 * ![Screenshot 2](images/flutter_02.png)
 * ![Screenshot 3](images/flutter_03.png)
 * ![Screenshot 4](images/flutter_04.png)
