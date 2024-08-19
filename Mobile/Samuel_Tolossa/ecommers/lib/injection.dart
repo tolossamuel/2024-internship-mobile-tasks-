@@ -11,9 +11,15 @@ import 'features/ecommerce/Data/data_source/remote_data_source.dart';
 import 'features/ecommerce/Data/repositories/ecommerce_repo_impl.dart';
 import 'features/ecommerce/Domain/repositories/ecommerce_repositories.dart';
 import 'features/ecommerce/Domain/usecase/ecommerce_usecase.dart';
-import 'features/ecommerce/presentation/state/input_button_activation/button_bloc.dart';
 import 'features/ecommerce/presentation/state/image_input_display/image_bloc.dart';
+import 'features/ecommerce/presentation/state/input_button_activation/button_bloc.dart';
 import 'features/ecommerce/presentation/state/product_bloc/product_bloc.dart';
+import 'features/ecommerce/presentation/state/user_states/login_user_states_bloc.dart';
+import 'features/login/data/datasource/remote_datasource.dart';
+import 'features/login/data/repositories/login_repo_impl.dart';
+import 'features/login/domain/repositories/login_repositories.dart';
+import 'features/login/domain/usecase/login_usecase.dart';
+import 'features/login/presentation/state/Login_Registration/login_registration_bloc.dart';
 
 final locator = GetIt.instance;
 
@@ -31,7 +37,7 @@ Future<void> SetUpLocator() async {
   locator.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(connectionChecker: locator()));
   locator.registerLazySingleton<LocalDataSource>(() => LocalDataSourceImpl(sharedPreferences: locator()));
   locator.registerLazySingleton<EcommerceRemoteDataSource>(() => EcommerceRemoteDataSourceImpl(client: locator()));
-  locator.registerLazySingleton<EcommerceRepositories>(() => EcommerceRepoImpl(remoteDataSource: locator(), networkInfo: locator()));
+  locator.registerLazySingleton<EcommerceRepositories>(() => EcommerceRepoImpl(remoteDataSource: locator(), networkInfo: locator(),localDataSource: locator()));
 
   locator.registerLazySingleton(() => EcommerceUsecase(repositories: locator()));
   locator.registerFactory(
@@ -45,6 +51,19 @@ Future<void> SetUpLocator() async {
     () => ButtonBloc(ecommerceUsecase: locator()),
   );
 
+  locator.registerLazySingleton<RemoteDatasource>(() => RemoteDatasourceImpl(client: locator(), networkInfo: locator(),sharedPreferences: locator()));
+  locator.registerLazySingleton<LoginRepositories>(() => LoginRepoImpl(remoteDatasourceImpl: locator()));
+
+  locator.registerLazySingleton(() => LoginUseCase(repository: locator()));
+  locator.registerFactory(
+    () => LoginRegistrationBloc(loginUseCase: locator()),
+  );
+  locator.registerFactory(
+    () => LoginUserStatesBloc(ecommerceUsecase: locator()),
+  
+  );
+
+ 
   
 }
 

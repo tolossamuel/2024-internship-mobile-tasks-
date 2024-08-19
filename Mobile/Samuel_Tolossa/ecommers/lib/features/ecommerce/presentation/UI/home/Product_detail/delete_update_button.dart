@@ -68,7 +68,7 @@ class DeleteUpdateButton extends StatelessWidget {
                         ),
                       );
                       context.read<ProductBloc>().add(const LoadAllProductEvent());
-                      Navigator.popUntil(context, ModalRoute.withName('/'));
+                      Navigator.popUntil(context, ModalRoute.withName('/home'));
                     }
                   },
             child: Container(

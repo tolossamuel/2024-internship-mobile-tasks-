@@ -9,6 +9,9 @@ abstract class LocalDataSource{
 
   Future<bool> addCach(EcommerceModel data);
   Future<bool> deleteCach(String id);
+  Future<String> getName(String key);
+  Future<bool> deleteToken(String key);
+  
 
 }
 const String idOfData  = 'local_ecommer_data';
@@ -90,5 +93,31 @@ class LocalDataSourceImpl implements LocalDataSource{
       return Future.value(false);
     }
   }
+
+
+  @override
+  Future<String> getName(String key) async {
+    final result = await sharedPreferences.getString(key);
+    if (result != null) {
+      return result;
+    }
+    return '';
+  }
+
+  Future<String?> getToken() async {
+    final value = sharedPreferences.getString('key');
+    if (value == null) {
+      return '';
+    }
+    return value;
+  }
+
+  @override
+  Future<bool> deleteToken(String key) async {
+    final result = await sharedPreferences.remove('key');
+    return result;
+  }
   
 }
+
+

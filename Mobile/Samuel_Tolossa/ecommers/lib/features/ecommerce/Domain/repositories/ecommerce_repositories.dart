@@ -17,4 +17,8 @@ abstract class EcommerceRepositories{
   Future<Either<Failure,bool>> deleteProduct(String id);
   Future<Either<Failure, Map<String,dynamic>>> selectImage();
 
+
+  Future<String> getUserName(String key);
+  Future<bool> logoutUser(String key);
+
 }

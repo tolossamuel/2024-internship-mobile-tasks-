@@ -56,7 +56,7 @@ class DetailPage extends StatelessWidget {
                 context.read<ProductBloc>().add(const LoadAllProductEvent());
                 EasyLoading.showSuccess('success');
                 EasyLoading.dismiss();
-                Navigator.popUntil(context, ModalRoute.withName('/'));
+                Navigator.popUntil(context, ModalRoute.withName('/home'));
               }
         },
         child: SingleChildScrollView(

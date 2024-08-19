@@ -45,9 +45,16 @@ class EcommerceUsecase extends Equatable {
       return repositories.selectImage();
     }
 
+    Future<String> getName(String key){
+      return repositories.getUserName(key);
+    }
+
+    Future<bool> deleteToken(String key){
+      return repositories.logoutUser(key);
+    }
+
     @override
  
     List<Object?> get props => throw UnimplementedError();
   
-
 }

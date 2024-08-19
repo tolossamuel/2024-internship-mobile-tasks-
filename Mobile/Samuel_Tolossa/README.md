@@ -1,4 +1,3 @@
-
 # Flutter UI Design Implementation
 
 ## Overview
@@ -41,6 +40,14 @@ Utilize Flutter widgets and components to build the UI:
 
 * **Project Naming** : Ensure the project is named correctly as specified.
 * **Screenshots** :
+* ![Login](images/login.png)
+* ![Alt text](images/login4.png)
+* ![Alt text](images/login7.png)
+* ![Alt text](images/logout.png)
+* ![Alt text](images/registration3.png)
+* ![Alt text](images/registration4.png)
+* ![Alt text](images/registration7.png)
+* ![Alt text](relative/path/to/your/image.png)
 * ![Screenshot 2](images/flutter_02.png)
 * ![Screenshot 3](images/flutter_03.png)
 * ![Screenshot 4](images/flutter_04.png)
@@ -50,7 +57,7 @@ Utilize Flutter widgets and components to build the UI:
 
 ## Clean Architecture Structure
 
-### Project Directory 
+### Project Directory
 
 ### Main Directory Structure
 

@@ -68,7 +68,7 @@ class _AddProductState extends State<AddProduct> {
                 context.read<ProductBloc>().add(const LoadAllProductEvent());
                 EasyLoading.showSuccess('success');
                 EasyLoading.dismiss();
-                Navigator.popUntil(context, ModalRoute.withName('/'));
+                Navigator.popUntil(context, ModalRoute.withName('/home'));
               }
             },
             child: Container(
@@ -109,7 +109,7 @@ class _AddProductState extends State<AddProduct> {
                 );
                 EasyLoading.dismiss();
                 Navigator.popUntil(context, (Route<dynamic> route) {
-                  return route.settings.name == '/';
+                  return route.settings.name == '/home';
                 });
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(

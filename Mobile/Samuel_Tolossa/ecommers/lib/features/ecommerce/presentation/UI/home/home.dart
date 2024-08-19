@@ -8,6 +8,8 @@ import '../../../../../core/utility/loading_page.dart';
 import '../../state/product_bloc/product_bloc.dart';
 import '../../state/product_bloc/product_event.dart';
 import '../../state/product_bloc/product_state.dart';
+import '../../state/user_states/login_user_states_bloc.dart';
+import '../../state/user_states/login_user_states_event.dart';
 import 'header.dart';
 import 'product_image.dart';
 
@@ -24,8 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     
 
+    context.read<LoginUserStatesBloc>().add(ProfileDetail());
     context.read<ProductBloc>().add(const LoadAllProductEvent());
-
     super.initState();
   }
   @override

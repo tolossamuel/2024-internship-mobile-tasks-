@@ -6,9 +6,11 @@ import '../../../../../core/Colors/colors.dart';
 import '../../../../../core/const/width_height.dart';
 
 class ApplyFilter extends StatelessWidget {
+  final String text;
 
   const ApplyFilter({
-    super.key,
+ 
+    this.text = 'Apply'
     
     });
 
@@ -21,7 +23,7 @@ class ApplyFilter extends StatelessWidget {
               height: height*0.053,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color : mainColor,
+                color : const Color.fromARGB(255, 95, 110, 245),
                 border: const Border(
                   top: BorderSide(color: mainColor),
                   left: BorderSide(color: mainColor),
@@ -30,14 +32,14 @@ class ApplyFilter extends StatelessWidget {
                 
                 )
               ),
-              child: const Center(
+              child:  Center(
               
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
             // Conditionally add widgets based on the 'check' variable
                       
-                        Text('Apply',style: TextStyle(color: Colors.white),),
+                        Text(text,style: const TextStyle(color: Colors.white),),
                   ]
                        
                 ),

@@ -7,15 +7,18 @@ import '../../../../core/Error/failure.dart';
 import '../../../../core/network/check_connectivity.dart';
 import '../../Domain/entity/ecommerce_entity.dart';
 import '../../Domain/repositories/ecommerce_repositories.dart';
+import '../data_source/local_data_source.dart';
 import '../data_source/remote_data_source.dart';
 import '../model/ecommerce_model.dart';
 
 class EcommerceRepoImpl implements EcommerceRepositories  {
   final EcommerceRemoteDataSource remoteDataSource;
   final NetworkInfo networkInfo;
+  final LocalDataSource localDataSource;
   const EcommerceRepoImpl({
     required this.remoteDataSource,
-    required this.networkInfo
+    required this.networkInfo,
+    required this.localDataSource
   });
 
   @override
@@ -120,6 +123,30 @@ class EcommerceRepoImpl implements EcommerceRepositories  {
     
     return Left(ServerFailure(message: e.toString()));
   }
+  }
+  
+  @override
+  Future<String> getUserName(String key) async{
+    try {
+      final result = await localDataSource.getName(key);
+      if (result.isNotEmpty) {
+        return result;
+      }
+      return 'Geust';
+    } catch (e) {
+      return 'Geust';
+    }
+  }
+  
+  @override
+  Future<bool> logoutUser(String key) async{
+    try {
+      final result =  await localDataSource.deleteToken(key);
+      return result;
+    } catch (e) {
+      return false;
+    }
+    
   }
 
 

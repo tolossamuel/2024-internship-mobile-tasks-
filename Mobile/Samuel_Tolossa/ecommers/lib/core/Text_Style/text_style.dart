@@ -7,13 +7,15 @@ class TextStyles extends StatelessWidget {
   final String text;
   final Color fontColor;
   final int fontSizes;
+  final String fontFamily;
   FontWeight? fontWeight = FontWeight.normal;
   TextStyles({
     super.key,
     required this.text,
     required this.fontColor,
     required this.fontSizes,
-    this.fontWeight
+    this.fontWeight,
+    this.fontFamily = 'Popins',
     });
 
   @override
@@ -26,6 +28,7 @@ class TextStyles extends StatelessWidget {
         color: fontColor,
         fontSize: fontSizes.toDouble(),
         fontWeight: fontWeight,
+        fontFamily: fontFamily,
        
       ),
 
