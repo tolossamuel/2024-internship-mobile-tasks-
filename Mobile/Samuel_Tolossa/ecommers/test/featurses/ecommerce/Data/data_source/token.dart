@@ -1,5 +1,0 @@
-class Token{
-  static final String tokin = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRvbG9zc2FtdWVsMUBnbWFpbC5jb20iLCJzdWIiOiI2NmJmMzJkNjNiNGRkZjhiNTZmMzU3ZDUiLCJpYXQiOjE3MjQxNTM4NzgsImV4cCI6MTcyNDU4NTg3OH0.u-OpOgQCKTAOBGvqwIhb412pMhE8qZlp3yL5oXy3GmQ';
-}
-
-
