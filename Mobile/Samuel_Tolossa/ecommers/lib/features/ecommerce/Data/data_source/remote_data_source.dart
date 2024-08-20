@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../core/Error/failure.dart';
 import '../../../../core/const/const.dart';
 import '../model/ecommerce_model.dart';
@@ -27,15 +28,24 @@ abstract class EcommerceRemoteDataSource {
 /// Implementation of the [EcommerceRemoteDataSource] interface.
 class EcommerceRemoteDataSourceImpl implements EcommerceRemoteDataSource {
   final http.Client client;
-  
+  final SharedPreferences sharedPreferences;
 
   EcommerceRemoteDataSourceImpl({
     required this.client,
+    required this.sharedPreferences
   });
   
   @override
   Future<EcommerceModel> getProduct(String id) async {
-    final response = await client.get(Uri.parse(Urls.getByUrl(id)));
+    final token = sharedPreferences.getString('key');
+
+      final response = await client.get(
+        Uri.parse(Urls.getByUrl(id)),
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
+      );
+
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
       if (data != null) {
@@ -52,7 +62,15 @@ class EcommerceRemoteDataSourceImpl implements EcommerceRemoteDataSource {
   @override
   Future<List<EcommerceModel>> getAllProducts() async {
     try {
-      final response = await client.get(Uri.parse(Urls.getAll()));
+      
+      final token = sharedPreferences.getString('key');
+    
+      final response = await client.get(
+        Uri.parse(Urls.getAll()),
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
+      );
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
      
@@ -72,7 +90,14 @@ class EcommerceRemoteDataSourceImpl implements EcommerceRemoteDataSource {
   
   @override
   Future<bool> deleteProduct(String id) async {
-    final response = await client.delete(Uri.parse(Urls.deleteProduct(id)));
+    final token = sharedPreferences.getString('key');
+
+      final response = await client.delete(
+        Uri.parse(Urls.deleteProduct(id)),
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
+      );
     if (response.statusCode == 200) {
       return Future.value(true);
     } else {
@@ -82,14 +107,16 @@ class EcommerceRemoteDataSourceImpl implements EcommerceRemoteDataSource {
   
   @override
   Future<bool> editProduct(String id, Map<String, dynamic> data) async {
+   final token = sharedPreferences.getString('key');
   final response = await client.put(
     Uri.parse(Urls.updateProduct(id)),
-    headers: {'Content-Type': 'application/json'},
+    headers: {'Content-Type': 'application/json','Authorization': 'Bearer $token',},
     body: jsonEncode({
       'name': data['name'],
       'description': data['description'],
       'price': data['price'],
     }),
+    
   );  // Log the response body for detailed error messages
 
   if (response.statusCode == 200) {
@@ -104,16 +131,19 @@ class EcommerceRemoteDataSourceImpl implements EcommerceRemoteDataSource {
     // Debugging output
    
     
-   
+   final token = sharedPreferences.getString('key');
     
     var request = http.MultipartRequest('POST', Uri.parse(Urls.addNewProduct()))
       ..fields['name'] = data['name']
       ..fields['price'] = data['price']
       ..fields['description'] = data['description']
+      ..headers['Authorization'] = 'Bearer $token'
       ..files.add(await http.MultipartFile.fromPath(
         'image', 
         data['file'].path,
-        contentType: MediaType('image', 'png')));
+        contentType: MediaType('image', 'png')),
+        
+        );
     
   
     

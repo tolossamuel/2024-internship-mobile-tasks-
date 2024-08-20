@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 
-class Description extends StatelessWidget {
+class Descriptions extends StatelessWidget {
   final String text;
-  const Description({
+  const Descriptions({
     super.key,
     required this.text
     });

@@ -36,7 +36,7 @@ Future<void> SetUpLocator() async {
 
   locator.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(connectionChecker: locator()));
   locator.registerLazySingleton<LocalDataSource>(() => LocalDataSourceImpl(sharedPreferences: locator()));
-  locator.registerLazySingleton<EcommerceRemoteDataSource>(() => EcommerceRemoteDataSourceImpl(client: locator()));
+  locator.registerLazySingleton<EcommerceRemoteDataSource>(() => EcommerceRemoteDataSourceImpl(client: locator(),sharedPreferences: locator()));
   locator.registerLazySingleton<EcommerceRepositories>(() => EcommerceRepoImpl(remoteDataSource: locator(), networkInfo: locator(),localDataSource: locator()));
 
   locator.registerLazySingleton(() => EcommerceUsecase(repositories: locator()));

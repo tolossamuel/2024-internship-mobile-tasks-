@@ -9,6 +9,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'token.dart';
 
 import '../../../../helper/dummy_data/read_json.dart';
 import '../../../../helper/test_hlper.mocks.dart';
@@ -18,12 +19,14 @@ void main() {
   late MockHttpClient mockHttpClient;
 
   late EcommerceRemoteDataSourceImpl ecommerceRemoteDataSourceImpl;
+  late MockSharedPreferences sharedPreferences;
 
 
 
   setUpAll(() {
     mockHttpClient = MockHttpClient();
-    ecommerceRemoteDataSourceImpl = EcommerceRemoteDataSourceImpl(client: mockHttpClient);
+    sharedPreferences = MockSharedPreferences();
+    ecommerceRemoteDataSourceImpl = EcommerceRemoteDataSourceImpl(client: mockHttpClient, sharedPreferences: sharedPreferences);
   });
   
 
@@ -41,9 +44,15 @@ void main() {
      test(
         'it must return the data by id',
         () async{
+          when(sharedPreferences.getString('key')).thenReturn(Token.tokin);
           when(
-            mockHttpClient.get(Uri.parse(Urls.getByUrl(id)))
-          ).thenAnswer(
+              mockHttpClient.get(
+                Uri.parse(Urls.getByUrl(id)),
+                headers: {
+                  'Authorization': 'Bearer ${Token.tokin}',
+                },
+              ),
+            ).thenAnswer(
             (_) async => http.Response (
               readJson('helper/dummy_data/remote_single.json'),200
             )
@@ -57,8 +66,13 @@ void main() {
         test(
         'it must return server error',
         () async{
+          when(sharedPreferences.getString('key')).thenReturn(Token.tokin);
           when(
-            mockHttpClient.get(Uri.parse(Urls.getByUrl(id)))
+            mockHttpClient.get(Uri.parse(Urls.getByUrl(id)),
+            headers: {
+                  'Authorization': 'Bearer ${Token.tokin}',
+                },
+            )
           ).thenAnswer(
             (_) async => http.Response (
               'server errro',404,
@@ -74,8 +88,13 @@ void main() {
       test(
         'it must return the all the data of the product',
         () async{
+          when(sharedPreferences.getString('key')).thenReturn(Token.tokin);
           when(
-            mockHttpClient.get(Uri.parse(Urls.getAll()))
+            mockHttpClient.get(Uri.parse(Urls.getAll()),
+            headers: {
+                  'Authorization': 'Bearer ${Token.tokin}',
+                },
+            )
           ).thenAnswer(
             (_) async => http.Response (
               readJson('helper/dummy_data/remote_json.json'),200
@@ -91,8 +110,14 @@ void main() {
         test(
         'it must return true if the data is deleted else false from remote data source',
         () async{
+          when(sharedPreferences.getString('key')).thenReturn(Token.tokin);
           when(
-            mockHttpClient.delete(Uri.parse(Urls.deleteProduct(id)))
+
+            mockHttpClient.delete(Uri.parse(Urls.deleteProduct(id)),
+            headers: {
+                  'Authorization': 'Bearer ${Token.tokin}',
+                },
+            )
           ).thenAnswer(
             (_) async => http.Response (
               'true',200
@@ -103,19 +128,21 @@ void main() {
 
           expect(result, true);
         });
-
+        // ..headers['Authorization'] = 'Bearer $token'
         test(
         'it must return true if the data is updated from remote data source else false',
         () async{
+          when(sharedPreferences.getString('key')).thenReturn(Token.tokin);
           when(
             mockHttpClient.put(
               Uri.parse(Urls.updateProduct(id)),
-                headers: {'Content-Type': 'application/json'},
+                headers: {'Content-Type': 'application/json','Authorization': 'Bearer ${Token.tokin}'},
                 body: jsonEncode({
                   'name': data['name'],
                   'description': data['description'],
                   'price': data['price'],
                 }),
+                
               )
           ).thenAnswer(
             (_) async => http.Response (
@@ -131,6 +158,7 @@ void main() {
         test(
         'it must return false if the data is add to remote data source else false',
         () async{
+          when(sharedPreferences.getString('key')).thenReturn(Token.tokin);
           when(
             mockHttpClient.post(
               Uri.parse(Urls.addNewProduct()),

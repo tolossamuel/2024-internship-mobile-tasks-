@@ -55,7 +55,8 @@ class DeleteUpdateButton extends StatelessWidget {
                         'name': name,
                         'disc': disc,
                         'id': id,
-                        'type' : 1
+                        'type' : 1,
+                        'title':'Update Product'
                       },
                     );
                   }

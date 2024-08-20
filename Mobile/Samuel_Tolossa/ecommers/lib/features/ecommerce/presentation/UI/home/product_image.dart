@@ -30,7 +30,9 @@ class ProductImage extends StatelessWidget {
             )
         },
         child: Card(
-      child: Column(
+          clipBehavior: Clip.antiAlias,
+          elevation: 2,
+              child: Column(
         children: [
           FadeInImage.assetNetwork(
             placeholder: 'assets/image/background.png',
@@ -74,8 +76,8 @@ class ProductImage extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    )
+              ),
+            )
       );
   }
 }

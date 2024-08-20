@@ -9,6 +9,7 @@ import 'package:ecommers/features/ecommerce/Domain/usecase/ecommerce_usecase.dar
 import 'package:ecommers/features/ecommerce/presentation/state/image_input_display/image_bloc.dart';
 import 'package:ecommers/features/ecommerce/presentation/state/input_button_activation/button_bloc.dart';
 import 'package:ecommers/features/ecommerce/presentation/state/product_bloc/product_bloc.dart';
+import 'package:ecommers/features/ecommerce/presentation/state/user_states/login_user_states_bloc.dart';
 import 'package:ecommers/features/login/data/datasource/remote_datasource.dart';
 import 'package:ecommers/features/login/data/repositories/login_repo_impl.dart';
 import 'package:ecommers/features/login/domain/repositories/login_repositories.dart';
@@ -34,7 +35,7 @@ import 'package:shared_preferences/shared_preferences.dart';
     LoginRepositories,
     LoginRepoImpl,
     RemoteDatasourceImpl,
-   
+    LoginUserStatesBloc,
     LoginUseCase
   
   ],
