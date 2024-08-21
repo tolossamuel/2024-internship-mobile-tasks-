@@ -16,7 +16,7 @@ class ImageBloc extends Bloc<ImageEvent,ImageState>{
 
   on<SelectImageEvent>(
       (event,emit) async {
-        emit(LoadingState());
+        emit(ImageLoadingState());
         final result = await ecommerceUsecase.selectImage();
         result.fold(
           (failure){

@@ -23,6 +23,7 @@ class AddProduct extends StatefulWidget {
 
   const AddProduct({
     super.key,
+ 
     
   });
 
@@ -33,9 +34,10 @@ class AddProduct extends StatefulWidget {
 class _AddProductState extends State<AddProduct> {
   @override
   Widget build(BuildContext context) {
-    final Map<String, dynamic> data =
+    Map<String, dynamic> data =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
-
+      // data = data == {}?widget.datas:data;
+      
     double width = WidthHeight.screenWidth(context);
     double height = WidthHeight.screenHeight(context);
     File? localImage;
@@ -143,7 +145,7 @@ class _AddProductState extends State<AddProduct> {
                         state.file = null;
                         state = InputIntialState();
                       }
-      
+                      
                       return GestureDetector(
                           onTap: () => {
                                 context.read<ImageBloc>().add(SelectImageEvent()),

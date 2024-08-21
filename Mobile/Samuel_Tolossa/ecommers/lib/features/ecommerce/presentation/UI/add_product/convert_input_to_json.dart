@@ -19,6 +19,7 @@ class ConvertInputToJson extends StatelessWidget {
          final bool check = state is OnButtonActivate ? state.isActivate : false;
          final bool type = data['id'].isEmpty;
         return GestureDetector(
+          key: const Key('add_button'),
           onTap: check?() {
             EasyLoading.showProgress(0.3, status: type?'Uploading...':'Updating...');
             context.read<ButtonBloc>().add(type?AddProductEvent():UpdateProductEvent());

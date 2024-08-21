@@ -139,7 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     );
                                   }),
                               ): state is LoadingState? ListView.builder(
-                                
+                                key: const Key('loading'),
                                       itemCount: 3,
                                       itemBuilder: (context, index){
                                         
@@ -171,6 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         floatingActionButton: GestureDetector(
+          key: const Key('add Product page'),
           onTap: () {
             Navigator.pushNamed(context, '/add-product',
           arguments: {'id':'','imageUrl':'','price':0,'name':'','disc':'','type':0},);

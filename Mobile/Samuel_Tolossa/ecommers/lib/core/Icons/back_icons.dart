@@ -11,6 +11,7 @@ class BackIcons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+              key : const Key('backIcon'),
               onTap: () => {
                 EasyLoading.dismiss(),
                 Navigator.pop(context),

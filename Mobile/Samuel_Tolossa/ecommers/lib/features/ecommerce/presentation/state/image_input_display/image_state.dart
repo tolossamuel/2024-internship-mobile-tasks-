@@ -22,7 +22,7 @@ class InputIntialState extends ImageState {
 }
 
 
-class LoadingState extends ImageState {
+class ImageLoadingState extends ImageState {
   @override
   List<Object?> get props => [];
 }

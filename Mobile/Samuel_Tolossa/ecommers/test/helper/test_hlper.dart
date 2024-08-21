@@ -14,6 +14,8 @@ import 'package:ecommers/features/login/data/datasource/remote_datasource.dart';
 import 'package:ecommers/features/login/data/repositories/login_repo_impl.dart';
 import 'package:ecommers/features/login/domain/repositories/login_repositories.dart';
 import 'package:ecommers/features/login/domain/usecase/login_usecase.dart';
+import 'package:ecommers/features/login/presentation/state/Login_Registration/login_registration_bloc.dart';
+import 'package:ecommers/features/login/presentation/state/login/login_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:mockito/annotations.dart';
@@ -36,8 +38,9 @@ import 'package:shared_preferences/shared_preferences.dart';
     LoginRepoImpl,
     RemoteDatasourceImpl,
     LoginUserStatesBloc,
-    LoginUseCase
-  
+    LoginUseCase,
+    LoginBloc,
+    LoginRegistrationBloc
   ],
   customMocks :[MockSpec<http.Client>(as : #MockHttpClient)],
 

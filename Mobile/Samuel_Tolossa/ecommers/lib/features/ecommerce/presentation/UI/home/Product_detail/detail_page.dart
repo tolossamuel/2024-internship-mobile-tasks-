@@ -11,7 +11,6 @@ import '../../../state/product_bloc/product_event.dart';
 import '../../../state/product_bloc/product_state.dart';
 import 'delete_update_button.dart';
 import 'description.dart';
-import 'size_of_product.dart';
 
 class DetailPage extends StatelessWidget {
   const DetailPage({
@@ -116,14 +115,6 @@ class DetailPage extends StatelessWidget {
                     height: 15,
                   ),
                   // size of product if avilable
-                  const Text(
-                    'Size:',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const SizeOfProduct(),
                   const SizedBox(
                     height: 10,
                   ),
