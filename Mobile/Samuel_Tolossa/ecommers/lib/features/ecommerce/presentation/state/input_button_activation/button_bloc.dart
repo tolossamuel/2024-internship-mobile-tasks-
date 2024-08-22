@@ -32,7 +32,7 @@ class ButtonBloc  extends Bloc<ButtonEvent,BottumState>{
           price = price.isEmpty? event.price: price;
           description = description.isEmpty? event.description: description;
           id = event.id;
-          file = file == null? event.image: file;
+          file = event.image?? file;
         }
        
         if (checkInput(name, price, description, file,event.type)){

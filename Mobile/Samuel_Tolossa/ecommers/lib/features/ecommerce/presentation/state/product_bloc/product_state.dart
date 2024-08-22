@@ -6,7 +6,7 @@ import 'package:equatable/equatable.dart';
 import '../../../Domain/entity/ecommerce_entity.dart';
 
 abstract class ProductState extends Equatable{
-  ProductState();
+  const ProductState();
 
   @override
   List<Object ?> get props => [];
@@ -17,7 +17,7 @@ class ProductIntialState extends ProductState {}
 class LoadedSingleProductState extends ProductState {
   final EcommerceEntity product;
 
-  LoadedSingleProductState ({
+  const LoadedSingleProductState ({
     required this.product
   });
 
@@ -28,7 +28,7 @@ class LoadedSingleProductState extends ProductState {
 class LoadedAllProductState extends ProductState {
   final List<EcommerceEntity> products;
 
-  LoadedAllProductState ({
+  const LoadedAllProductState ({
     required this.products
   });
 
@@ -40,7 +40,7 @@ class LoadedAllProductState extends ProductState {
 class SuccessDelete extends ProductState {
   final bool deleted;
 
-  SuccessDelete ({
+  const SuccessDelete ({
     required this.deleted
   });
 
@@ -53,7 +53,7 @@ class SuccessDelete extends ProductState {
 class SuccessAdd extends ProductState {
   final bool add;
 
-  SuccessAdd ({
+  const SuccessAdd ({
     required this.add
   });
 
@@ -67,7 +67,7 @@ class SuccessAdd extends ProductState {
 class ProductErrorState extends ProductState {
   final String messages;
 
-  ProductErrorState ({
+  const ProductErrorState ({
     required this.messages
   });
 

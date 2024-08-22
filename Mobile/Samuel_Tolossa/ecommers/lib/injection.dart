@@ -24,7 +24,7 @@ import 'features/login/presentation/state/Login_Registration/login_registration_
 final locator = GetIt.instance;
 
 
-Future<void> SetUpLocator() async {
+Future<void> setUpLocator() async {
  
   final sharedPreferences = await SharedPreferences.getInstance();
 

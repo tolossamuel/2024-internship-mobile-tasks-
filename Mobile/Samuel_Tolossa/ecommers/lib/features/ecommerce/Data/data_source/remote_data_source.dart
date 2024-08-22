@@ -125,7 +125,8 @@ class EcommerceRemoteDataSourceImpl implements EcommerceRemoteDataSource {
     return Future.value(false);
   }
 }
-  
+
+@override  
  Future<bool> addProduct(Map<String, dynamic> data) async {
   try {
     // Debugging output

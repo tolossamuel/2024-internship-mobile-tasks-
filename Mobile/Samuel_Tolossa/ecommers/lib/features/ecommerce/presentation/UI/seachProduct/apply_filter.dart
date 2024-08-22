@@ -9,7 +9,7 @@ class ApplyFilter extends StatelessWidget {
   final String text;
 
   const ApplyFilter({
- 
+    super.key,
     this.text = 'Apply'
     
     });

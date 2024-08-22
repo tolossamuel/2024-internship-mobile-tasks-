@@ -22,7 +22,7 @@ import 'injection.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await di.SetUpLocator();
+  await di.setUpLocator();
   runApp(const MyApp());
 }
 

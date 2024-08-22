@@ -97,7 +97,7 @@ class LocalDataSourceImpl implements LocalDataSource{
 
   @override
   Future<String> getName(String key) async {
-    final result = await sharedPreferences.getString(key);
+    final result =  sharedPreferences.getString(key);
     if (result != null) {
       return result;
     }

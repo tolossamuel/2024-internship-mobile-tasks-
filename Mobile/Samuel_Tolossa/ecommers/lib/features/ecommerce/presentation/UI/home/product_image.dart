@@ -45,7 +45,7 @@ class ProductImage extends StatelessWidget {
               
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(width:width*0.418, child:TextStyles(text: '${title}', fontColor: Colors.black,fontWeight: FontWeight.w500, fontSizes: (width*0.04).toInt())),
+                SizedBox(width:width*0.418, child:TextStyles(text: title, fontColor: Colors.black,fontWeight: FontWeight.w500, fontSizes: (width*0.04).toInt())),
                 SizedBox(width: width * 0.15,child: Align(alignment:Alignment.centerRight,child: TextStyles(text: '\$$price', fontColor: Colors.black, fontSizes: 14))),
               ],
             ),
@@ -57,7 +57,7 @@ class ProductImage extends StatelessWidget {
               
               children: [
                 
-                SizedBox(width:width*0.65,child: TextStyles(text: '$disc', fontColor: Colors.grey, fontSizes: (width*0.03).toInt())),
+                SizedBox(width:width*0.65,child: TextStyles(text: disc, fontColor: Colors.grey, fontSizes: (width*0.03).toInt())),
                 const Spacer(),
                 const Icon(Icons.star, color: Colors.yellow, size: 15),
                 

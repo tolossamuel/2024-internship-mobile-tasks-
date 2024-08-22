@@ -22,7 +22,7 @@ class ProductBloc  extends Bloc<ProductEvent,ProductState>{
         result.fold(
           (failure){
             
-            emit(ProductErrorState(messages: 'try again'));
+            emit(const ProductErrorState(messages: 'try again'));
           },
           (data) {
             emit(LoadedSingleProductState(product: data));
@@ -40,7 +40,7 @@ class ProductBloc  extends Bloc<ProductEvent,ProductState>{
         result.fold(
           (failure){
             
-            emit(ProductErrorState(messages: 'try again'));
+            emit(const ProductErrorState(messages: 'try again'));
           },
           (data) {
             emit(LoadedAllProductState(products: data));
@@ -56,7 +56,7 @@ class ProductBloc  extends Bloc<ProductEvent,ProductState>{
         final result = await ecommerceUsecase.deleteProduct(event.id);
         result.fold(
           (failure){
-            emit(ProductErrorState(messages: 'try again'));
+            emit(const ProductErrorState(messages: 'try again'));
           }, 
           (data) {
             emit(SuccessDelete(deleted: data));

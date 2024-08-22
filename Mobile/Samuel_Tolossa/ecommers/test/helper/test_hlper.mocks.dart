@@ -950,6 +950,7 @@ class MockLocalDataSourceImpl extends _i1.Mock
 /// A class which mocks [EcommerceUsecase].
 ///
 /// See the documentation for Mockito's code generation for more information.
+// ignore: must_be_immutable
 class MockEcommerceUsecase extends _i1.Mock implements _i8.EcommerceUsecase {
   MockEcommerceUsecase() {
     _i1.throwOnMissingStub(this);

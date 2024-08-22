@@ -36,13 +36,13 @@ void main() {
     );
  
 
-  final EcommerceEntity ecommerceEntity = const EcommerceEntity(
+  const EcommerceEntity ecommerceEntity = EcommerceEntity(
     id: '1', 
     name: 'pc', 
     description: 'description', 
     imageUrl: 'imageUrl', 
     price: 123.2);
-  final List<EcommerceEntity> listProduct = const [
+  const  List<EcommerceEntity> listProduct = [
     EcommerceEntity(
     id: '1', 
     name: 'pc', 
@@ -64,13 +64,13 @@ void main() {
         build: (){
           when(
             mockEcommerceUsecase.dataById(any)
-          ).thenAnswer((_) async=> Right(ecommerceEntity));
+          ).thenAnswer((_) async=> const Right(ecommerceEntity));
           return productBloc;
         },
         act: (bloc) => bloc.add(const GetSingleProductEvent(id: '1')),
           expect: () => [
             LoadingState(),
-            LoadedSingleProductState(product: ecommerceEntity)
+            const LoadedSingleProductState(product: ecommerceEntity)
           ],
       );
 
@@ -85,7 +85,7 @@ void main() {
         act: (bloc) => bloc.add(const GetSingleProductEvent(id: '1')),
           expect: () => [
             LoadingState(),
-            ProductErrorState(messages: 'try again'),
+            const ProductErrorState(messages: 'try again'),
             
           ],
       );
@@ -96,13 +96,13 @@ void main() {
         build: (){
           when(
             mockEcommerceUsecase.dataForAll()
-          ).thenAnswer((_) async => Right(listProduct));
+          ).thenAnswer((_) async => const Right(listProduct));
           return productBloc;
         },
         act: (bloc) => bloc.add(const LoadAllProductEvent()),
           expect: () => [
             LoadingState(),
-            LoadedAllProductState(products: listProduct),
+            const LoadedAllProductState(products: listProduct),
             
           ],
       );
@@ -118,7 +118,7 @@ void main() {
         act: (bloc) => bloc.add(const LoadAllProductEvent()),
           expect: () => [
             LoadingState(),
-            ProductErrorState(messages: 'try again'),
+            const ProductErrorState(messages: 'try again'),
             
           ],
       );
@@ -139,7 +139,7 @@ void main() {
         act: (bloc) => bloc.add(const DeleteProductEvent(id: '1')),
           expect: () => [
             LoadingState(),
-            SuccessDelete(deleted:true),
+            const SuccessDelete(deleted:true),
             
           ],
       );
@@ -155,7 +155,7 @@ void main() {
         act: (bloc) => bloc.add(const DeleteProductEvent(id: '1')),
           expect: () => [
             LoadingState(),
-            ProductErrorState(messages: 'try again'),
+            const ProductErrorState(messages: 'try again'),
             
           ],
       );

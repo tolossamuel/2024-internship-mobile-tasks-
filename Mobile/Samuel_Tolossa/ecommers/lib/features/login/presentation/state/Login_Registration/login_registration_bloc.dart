@@ -106,7 +106,6 @@ class LoginRegistrationBloc extends Bloc<LoginRegistrationEvent,LoginRegistratio
          
           emit(const OnLoading());
           final result = await loginUseCase.registerUser(newEmail, newPassword,fullName);
-        ;
           result.fold(
             (failure) {
               

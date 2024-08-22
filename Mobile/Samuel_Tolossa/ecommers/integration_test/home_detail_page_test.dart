@@ -20,6 +20,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:integration_test/integration_test.dart';
 
 class MockProductBloc extends MockBloc<ProductEvent, ProductState> implements ProductBloc {}
 class MockLoginUserStatesBloc extends MockBloc<LoginUserStatesEvent, LoginUserStates> implements LoginUserStatesBloc {}
@@ -27,7 +28,7 @@ class MockLoginUserStatesBloc extends MockBloc<LoginUserStatesEvent, LoginUserSt
 void main() {
   late MockProductBloc mockProductBloc;
   late MockLoginUserStatesBloc mockLoginUserStatesBloc;
-  
+  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
 
   setUp(() {
@@ -59,7 +60,7 @@ void main() {
         const LoadedAllProductState(
           products: [
             EcommerceEntity(id: '1', name: 'Product 1', description: 'Description 1', imageUrl: 'https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg', price: 100),
-            // EcommerceEntity(id: '2', name: 'Product 2', description: 'Description 2', imageUrl: 'https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg', price: 200),
+            EcommerceEntity(id: '2', name: 'Product 2', description: 'Description 2', imageUrl: 'https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg', price: 200),
           ],
         ),
       ]),
@@ -91,18 +92,22 @@ void main() {
     );
     // await tester.tap(find.text('Navigate to AddProduct'));
     await tester.pumpAndSettle();
-    await tester.tap(find.byType(ProductImage));
+    await Future.delayed(const Duration(seconds: 2));
+    await tester.tap(find.byType(ProductImage).at(0));
     await tester.pumpAndSettle();
+    await Future.delayed(const Duration(seconds: 2));
     expect(find.text('Product 1'), findsOneWidget);
 
     expect(find.byType(BackIcons), findsOneWidget);
     // expect(find.text('Avi'), findsOneWidget);
     // back to home page
+    await Future.delayed(const Duration(seconds: 2));
     await tester.tap(find.byType(BackIcons));
     await tester.pumpAndSettle();
-
+    await Future.delayed(const Duration(seconds: 2));
     expect(find.text('Available Products'), findsOneWidget);
     expect(find.byType(HeaderPart), findsOneWidget);
+    await Future.delayed(const Duration(seconds: 2));
 
   
   });

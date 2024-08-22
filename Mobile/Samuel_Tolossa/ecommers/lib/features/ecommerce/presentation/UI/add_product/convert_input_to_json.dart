@@ -7,9 +7,10 @@ import '../../state/input_button_activation/button_bloc.dart';
 import '../../state/input_button_activation/button_event.dart';
 import 'add_delete_button.dart';
 
+
 class ConvertInputToJson extends StatelessWidget {
   final Map<String, dynamic> data;
-  ConvertInputToJson({super.key, required this.data});
+  const ConvertInputToJson({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
