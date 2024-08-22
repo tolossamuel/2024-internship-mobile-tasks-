@@ -38,6 +38,7 @@ dependencies:
   http_parser: ^4.0.2
   flutter_easyloading: ^3.0.5
   email_validator: ^3.0.0
+  date_formatter: ^0.0.4
 
 dev_dependencies:
   flutter_test:

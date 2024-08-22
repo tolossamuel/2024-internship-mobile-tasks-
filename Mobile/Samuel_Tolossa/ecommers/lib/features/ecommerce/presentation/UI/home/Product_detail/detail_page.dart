@@ -21,7 +21,7 @@ class DetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final Map<String, dynamic> data =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
-    final int titles = 20 < data['name'].length ? 20 : data['name'].length;
+    
     return SafeArea(
       child: Scaffold(
         appBar: PreferredSize(
@@ -79,11 +79,16 @@ class DetailPage extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-                          Text(
-                            '${data['name'].substring(0, titles)}...',
-                            style: const TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            child: TextStyles(
+                              text: data['name'], 
+                              fontColor: Colors.black, 
+                              fontSizes: 20,
+                              fontWeight: FontWeight.bold,
+                              ),
                           ),
+                          
                         ],
                       ),
                       Column(

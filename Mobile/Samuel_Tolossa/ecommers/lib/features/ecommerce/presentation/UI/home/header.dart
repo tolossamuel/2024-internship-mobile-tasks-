@@ -1,3 +1,4 @@
+import 'package:date_formatter/date_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,18 +13,21 @@ class HeaderPart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String formattedDate = DateFormatter.formatDateTime(
+      dateTime: DateTime.now(),
+      outputFormat: 'dd-MM-yyyy',
+    );
     return Container(
       padding: const EdgeInsets.only(top: 10),
       child: Row(
         children: [
           GestureDetector(
-            onTap: (){
+            onTap: () {
               showModalBottomSheet(
-                      context: context, 
-                      builder: (BuildContext context){
-                        return const ProfilePage();
-                      }
-                      );
+                  context: context,
+                  builder: (BuildContext context) {
+                    return const ProfilePage();
+                  });
             },
             child: Container(
               width: 50,
@@ -42,9 +46,7 @@ class HeaderPart extends StatelessWidget {
               children: [
                 SizedBox(
                   child: TextStyles(
-                      text: 'July 14, 2023',
-                      fontColor: smallText,
-                      fontSizes: 10),
+                      text: formattedDate, fontColor: smallText, fontSizes: 12),
                 ),
                 BlocBuilder<LoginUserStatesBloc, LoginUserStates>(
                   builder: (context, user) {
@@ -57,7 +59,6 @@ class HeaderPart extends StatelessWidget {
                             fontColor: mainText,
                             fontSizes: 16,
                             fontWeight: FontWeight.w300,
-                            
                           ),
                           TextStyles(
                             text: name,
