@@ -94,30 +94,3 @@ class LoginRegister extends StatelessWidget {
 }
 
 
-// '''
-// extButton(
-    
-//       focusNode: FocusNode(
-
-//       ),
-      
-//       onPressed:(){
-        
-//       },
-//       child: SizedBox(
-        
-//         height: hight.toDouble(),
-//         child: ConStTexts(
-//           text: text,
-//           color: const Color(0xff3F51F3),
-//           fontSize: fontSize,
-//           fontWeight: FontWeight.bold,
-//           fontFamily: 'Poppins',
-
-          
-//         ),
-//       ),
-//       );
-    
-    
-//     '''

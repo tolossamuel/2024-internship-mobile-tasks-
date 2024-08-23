@@ -48,6 +48,7 @@ class _AddProductState extends State<AddProduct> {
           title:  data['type'] != 1?const Text('Add Product'):const Text('Update Product'),
           centerTitle: true,
           leading: GestureDetector(
+            key: const Key('back from add page'),
             onTap: () => {
               setState(() {
                 localImage = null;
@@ -130,6 +131,7 @@ class _AddProductState extends State<AddProduct> {
               }
             },
             child: Container(
+              width: double.infinity,
               color: Colors.white,
               padding: const EdgeInsets.fromLTRB(20, 15, 20, 10),
               child: Column(
@@ -147,14 +149,15 @@ class _AddProductState extends State<AddProduct> {
                       }
                       
                       return GestureDetector(
+                         key: const Key('image selector'),
                           onTap: () => {
                                 context.read<ImageBloc>().add(SelectImageEvent()),
                               },
                           child: ImageField(
-                            hight: (0.2*height).toInt(),
+                            hight: (0.3*height).toInt(),
                             check: true,
                             text: 'Photo',
-                            width: (width*0.85).toInt(),
+                            width: (width).toInt(),
                             imageUrl: data['imageUrl'],
                             localImage: localImage,
                           ));
@@ -172,7 +175,7 @@ class _AddProductState extends State<AddProduct> {
                       hight: (0.069*height).toInt(),
                       check: false,
                       text: 'name',
-                      width: (width*0.85).toInt(),
+                      width: (width).toInt(),
                       placeHolder: data['name'],
                       data: data,
                       ),
@@ -187,7 +190,7 @@ class _AddProductState extends State<AddProduct> {
                       hight: (0.069*height).toInt(),
                       check: false,
                       text: 'catagory',
-                      width: (width*0.85).toInt(),
+                      width: (width).toInt(),
                       placeHolder: data['name'],data: data,),
                   const SizedBox(
                     height: 10,
@@ -200,7 +203,7 @@ class _AddProductState extends State<AddProduct> {
                       hight: 56,
                       check: false,
                       text: 'price',
-                      width: (width*0.85).toInt(),
+                      width: (width).toInt(),
                       placeHolder: data['price'] > 0?data['price'].toString():'',data: data,),
                   const SizedBox(
                     height: 10,
@@ -213,7 +216,7 @@ class _AddProductState extends State<AddProduct> {
                       hight: 140,
                       check: false,
                       text: 'description',
-                      width: (width*0.85).toInt(),
+                      width: (width).toInt(),
                       placeHolder: data['disc'],data: data,),
                   const SizedBox(
                     height: 15,
